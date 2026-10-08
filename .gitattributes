@@ -1,0 +1,18 @@
+# Chuẩn hóa xuống dòng: tránh diff "toàn file" khi nhóm dùng cả Windows và macOS/Linux
+* text=auto eol=lf
+*.{ps1,cmd,bat} text eol=crlf
+
+# File nhị phân (asset game)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.docx binary
+*.pdf binary
