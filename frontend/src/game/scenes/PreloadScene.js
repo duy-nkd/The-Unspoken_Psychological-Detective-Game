@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import { createLogger } from '@/shared/logger/logger'
 import { FIRST_CHAPTER } from '../constants/gameplay'
 import { SCENE_KEYS } from '../constants/sceneKeys'
+import { loadCharacterAssets, registerCharacterAnimations } from '../data/characters'
 import { dialogueCacheKey, dialogueUrl } from '../data/dialogueData'
 import { TEXT_STYLES } from '../ui/theme'
 
@@ -10,6 +11,7 @@ const log = createLogger('PreloadScene')
 /**
  * Nạp asset bất đồng bộ (Project.docx §3.2: JSON hội thoại trong public/assets/dialogues/).
  * Thêm asset mới: khai báo trong preload() — scene khác chỉ dùng key đã nạp.
+ * Ảnh nhân vật + hoạt ảnh nhép miệng: khai báo trong data/characters.js (tự nạp tại đây).
  */
 export class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -27,9 +29,12 @@ export class PreloadScene extends Phaser.Scene {
     )
 
     this.load.json(dialogueCacheKey(FIRST_CHAPTER), dialogueUrl(FIRST_CHAPTER))
+    loadCharacterAssets(this.load)
   }
 
   create() {
+    // Hoạt ảnh thuộc AnimationManager toàn game -> tạo một lần, mọi scene dùng chung
+    registerCharacterAnimations(this.anims)
     this.scene.start(SCENE_KEYS.MAIN_MENU)
   }
 }

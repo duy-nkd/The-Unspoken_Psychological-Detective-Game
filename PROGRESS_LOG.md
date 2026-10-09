@@ -9,14 +9,14 @@
 
 | Trường | Giá trị |
 |---|---|
-| Cập nhật lần cuối | 08/10/2026 22:20 — T-003 (README hướng dẫn B6) xong |
-| Tác vụ đang làm | Không (T-002 chờ người dùng chạy script — bước B6) |
-| Bước con cuối cùng đã xong | T-002 / B5 — 115 file đã ghi lên máy, đối chiếu kích thước khớp |
-| Trạng thái dở dang | **Có — phía người dùng**: file cũ vẫn còn và Java mới đang nằm trong `_migration/` cho tới khi chạy `scripts/apply-restructure.ps1` |
-| Việc tiếp theo | Người dùng: (1) `powershell -ExecutionPolicy Bypass -File scripts\apply-restructure.ps1 -DryRun` rồi chạy thật; (2) `cd frontend; npm run check`; (3) chạy `db/schema.sql`; (4) `cd backend; mvn clean test`; (5) báo lỗi (nếu có) + trả lời ISS-02, ISS-29, ISS-05/06/07. AI: sau đó làm WP-02/03 |
-| Đang bị chặn bởi | ISS-29 (userId), ISS-05, ISS-06, ISS-07, ISS-10; ISS-26 (sửa Java về sau vẫn phải qua `_migration/`) |
-| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Nếu `_migration/` còn tồn tại → script chưa chạy. Kiểm tra `git status` |
-| Ghi chú cho phiên sau | Không có quyền shell trên máy người dùng trong phiên 08/10; chỉ đọc/ghi file qua đồng bộ file |
+| Cập nhật lần cuối | 09/10/2026 — sau T-010 (Claude Code) |
+| Tác vụ đang làm | Không |
+| Đã xong gần nhất | **T-009**: áp dụng tái cấu trúc T-002 (B6). **T-010**: sửa `.gitattributes` (CRLF cho .ps1/.cmd/.bat), xóa `PROGRESS_LOG-1.md` + 3 PNG thừa, commit T-009+T-010 lên nhánh `Nhan` (chưa push) |
+| Trạng thái dở dang | Chưa tạo CSDL MySQL (máy chưa có MySQL) → chưa chạy `spring-boot:run` / ddl-auto=validate / thử end-to-end (README Bước 5–7) |
+| Việc tiếp theo | (1) Người dùng cài MySQL Server (tự đặt mật khẩu root) → báo lại → AI chạy README Bước 5–7; (2) push nhánh `Nhan` + mở PR vào `master` khi người dùng yêu cầu; (3) WP-02/03 (API Contract + định dạng JSON hội thoại — chốt ISS-07) |
+| Đang bị chặn bởi | ISS-07 (định dạng JSON + lời thoại Ch1), ISS-29 (login chưa trả `userId` → save chỉ offline), ISS-05, ISS-06, ISS-10 — xem PROJECT_MEMORY mục E |
+| Lệnh/kiểm tra cần chạy lại khi tiếp tục | `git status` · `cd frontend; npm run check` · `cd backend; mvn clean test` |
+| Ghi chú cho phiên sau | Làm việc bằng Claude Code (có shell) → ghi Java trực tiếp vào package; ISS-26 đã đóng. Lỗi push nhầm `master`: người dùng xác nhận **đã sửa** (09/10). Máy: Java 21, Maven 3.10.0, chưa có MySQL |
 
 ---
 
@@ -123,7 +123,7 @@
 | B3 | Dựng backend Spring Boot theo package-by-feature (common, security, user, auth, game, report, evidence) + `db/schema.sql` nguyên văn §2.1–2.2 + application.yml | Xong | 31 file Java (main) + 1 test | `javac --release 17` với đúng jar trong `~/.m2` của người dùng (Spring Boot 3.4.4, Security 6.4.4, JJWT 0.12.6): **0 lỗi, 0 cảnh báo**; JwtTokenProviderTest **4/4 pass** (chạy bằng reflection harness, không qua Maven Surefire). **Chưa chạy**: khởi động Spring context, kết nối MySQL, ddl-auto=validate |
 | B4 | Tài liệu + công cụ: `docs/ARCHITECTURE.md`, `docs/CONVENTIONS.md`, README, `.gitignore`, `.editorconfig`, `.gitattributes`, `scripts/apply-restructure.ps1` (ASCII, CRLF, PS 5.1); cập nhật PROJECT_MEMORY (D1, E: ISS-02/25/26/28 + ISS-29/30 mới, F: DEC-005..008, G, H4a) | Xong | như cột Nội dung | Script **chưa chạy thử** (môi trường AI không có PowerShell) — đã rà soát thủ công, không có ký tự ngoài ASCII |
 | B5 | Ghi lên máy người dùng | Xong | 115 file (frontend 71, `_migration` 33, backend resources 2, docs 2, script 1, gốc repo 6) | device_commit: 115/115 written, 0 rejected; đối chiếu kích thước bằng liệt kê thư mục: khớp |
-| B6 | Người dùng chạy script + kiểm thử thật | **Chờ người dùng** | — | — |
+| B6 | Chạy script + kiểm thử thật | **Xong (09/10, T-009)** | xem T-009 | `npm run check` 30/30 + build OK; `mvn clean test` 4/4. Chưa chạy MySQL/Spring context |
 
 #### Kết quả
 - **Đã hoàn thành:** B1–B5.
@@ -141,3 +141,69 @@
 - **Bước con:** B1 đọc lại README trên máy (khớp bản AI đã ghi) → B2 chèn mục mới trước "Chạy frontend" → B3 ghi lên máy.
 - **Ghi chú:** lần ghi PROGRESS_LOG trước đã sinh bản sao `PROGRESS_LOG-1.md` (lỗi đồng bộ); `PROGRESS_LOG.md` đã được khôi phục bản mới nhất; README Bước 1 có lệnh xóa bản sao.
 - **Self-Check:** chỉ thêm hướng dẫn vận hành, không đổi đặc tả. Trạng thái: xong.
+
+### T-005 — Thêm 3 ảnh nhân vật "ông chủ trọ" (Ch1)
+- Ngày giao: 09/10/2026 — người dùng: "thêm 3 ảnh này vào project đây là nhân vật chủ trọ"
+- **Kế hoạch:** mục đích — đưa asset nhân vật vào repo đúng thư mục chuẩn; ảnh hưởng — chỉ thêm 3 file PNG vào `frontend/public/assets/images/portraits/`, **không sửa code**; rủi ro — ảnh nặng (~7 MB/ảnh, 1536×2752) làm chậm tải game và phình git; nền kem đặc (không trong suốt); ảnh toàn thân, khung chân dung `DialogueBox` 160×160 sẽ bị méo nếu dùng thẳng; đề xuất — xác nhận tên biểu cảm, sau đó tối ưu ảnh (WebP/thu nhỏ, tách nền) và nạp trong `PreloadScene`.
+- **Kết quả:** `landlord-smirk.png` (cười nhếch mép), `landlord-angry.png` (cau mày, đang nói), `landlord-talk.png` (đang nói, bình thường). Tên biểu cảm do AI đặt theo hình — chờ người dùng xác nhận. Đã kiểm tra trên máy: 3 file có mặt, kích thước khớp bản gốc.
+- **Chưa làm (chờ xác nhận):** đăng ký texture key trong `PreloadScene`, mã nhân vật trong dữ liệu hội thoại (ISS-07), tối ưu ảnh.
+- **Self-Check:** không đổi đặc tả/cốt truyện; chưa chạy game với ảnh mới. Trạng thái: xong phần thêm file.
+- **Sửa (09/10, trong T-006):** đối chiếu lại khuôn mặt — tên ở T-005 bị lệch: `landlord-angry.png` thực ra là miệng **mở to** (nay gọi `talk`), `landlord-talk.png` thực ra là **cau mày, miệng hé** (nay gọi `stern`). Bản dùng trong game là `.webp` mới (tên đúng); 3 file `.png` trong `public/.../portraits/` cần người dùng xóa.
+
+### T-006 — Hoạt ảnh nhép miệng cho ông chủ trọ (Phaser)
+- Ngày giao: 09/10/2026 17:28 — người dùng: "được hãy giúp tôi" (đồng ý đề xuất: cắt/nén ảnh, sửa PreloadScene + DialogueBox, demo, test)
+- **Kế hoạch:** mục đích — chân dung nhép miệng trong lúc chữ chạy; ảnh hưởng — thêm `data/characters.js`, `systems/lipSync.js`, `debug/demoDialogue.js` (+2 test); sửa `DialogueBox` (image→sprite, phát/dừng hoạt ảnh), `PreloadScene` (nạp ảnh + tạo hoạt ảnh), `dialogueData` (trường `talk`), `DialogueScene` (`data.lines`/`data.nextScene` cho debug), `DebugScene` (F9 demo, nhãn chuyển lên góc trên phải); docs + README; asset `.webp` mới; ảnh gốc chuyển vào `art-source/`. Rủi ro — trường `talk` là đề xuất trong lúc ISS-07 chưa chốt; tách nền tự động có thể sót viền ở chỗ khó; lời thoại demo chỉ là chữ `[DEMO]`, không phải kịch bản.
+- **Bước con:** B1 đồng bộ code từ máy (khớp) → B2 tách nền + cắt chân dung 512×512 + toàn thân 518×900 (.webp ~42 KB / ~80 KB) → B3 sửa code → B4 kiểm tra → B5 ghi lên máy.
+- **Kiểm tra đã chạy (container):** 27/27 unit test (Node shim cho Vitest), ESLint 0 lỗi, Prettier sạch; Chromium + Phaser 4.2.1 thật: 3 texture + 2 hoạt ảnh tồn tại, F9 mở demo, khung hình đổi smirk↔talk khi chữ chạy, dừng ở dấu phẩy, chữ xong/bấm bỏ qua → về ảnh đứng yên, hết demo về MainMenu; luồng New Game cũ không đổi, không có lỗi console. **Chưa chạy** `npm run check` thật (Vitest/Vite) trên máy người dùng.
+- **Người dùng cần làm:** xóa `frontend/public/assets/images/portraits/landlord-{smirk,talk,angry}.png`; `cd frontend; npm run check`; `npm run dev` → bấm F9.
+- **Self-Check:** không thêm lời thoại cốt truyện; tốc độ nhép miệng ghi TẠM. Trạng thái: xong phía AI.
+
+### T-007 — Chủ trọ hiện nửa thân trên bên trái/phải màn hình (kiểu Visual Novel)
+- Ngày giao: 09/10/2026 18:48 — người dùng: "khi trò chuyện, khung chat vẫn hiện ở dưới, còn ông chủ trọ đứng ở bên trái hoặc phải của màn hình, hiện nửa thân trên và nhép miệng, thay cho ô ảnh đại diện nhỏ"
+- **Kế hoạch:** mục đích — thay ô chân dung 160×160 bằng nhân vật nửa thân đứng cạnh khung thoại; ảnh hưởng — ảnh `images/characters/*.webp` đổi từ toàn thân sang nửa thân 783×990; thêm `ui/CharacterStage.js`; viết lại `ui/DialogueBox.js` (nhép miệng chuyển sang CharacterStage, ô chân dung chỉ hiện khi câu dùng `portrait`); `data/characters.js` (key `char-<id>-<biểu cảm>`, `resolveStageLine`, `defaultSide`); `dialogueData` đọc `character/expression/talk/position`; `DialogueScene` tạo sân khấu; `theme.DEPTH.CHARACTER`; demo F9; docs/README. Rủi ro — định dạng câu thoại đổi so với T-006 (`talk` nay là tên kiểu nhép, không phải animation key) — vẫn chờ ISS-07; ảnh chân dung vuông trong `portraits/` hiện không nạp (giữ cho Sổ tay về sau).
+- **Hành vi:** câu có `character` → nhân vật trượt vào ở bên `position` (mặc định phải), nhép miệng khi chữ chạy, dừng ở dấu câu; câu của người khác → nhân vật tối đi; đổi bên → trượt vào bên mới.
+- **Kiểm tra đã chạy (container):** 30/30 unit test (Node shim), ESLint 0 lỗi, Prettier sạch; Chromium + Phaser 4.2.1: nửa thân 522×660 đứng phải (x≈995) / trái (x≈285), khung hình đổi smirk↔talk khi chữ chạy, câu người khác → tối, bấm bỏ qua → về ảnh đứng yên, không có ô chân dung, chữ dùng hết bề ngang; luồng New Game cũ không lỗi. **Chưa chạy** `npm run check` thật trên máy người dùng.
+- **Self-Check:** không thêm lời thoại cốt truyện (chỉ câu `[DEMO]`); kích thước/vị trí/tốc độ ghi TẠM. Trạng thái: xong phía AI.
+
+### T-008 — Chuẩn bị chuyển sang Claude Code: CLAUDE.md + docs/sources/
+- Ngày giao: 09/10/2026 19:06 — người dùng: "hãy tạo claude.md và thư mục cùng với di chuyển các file vào thư mục giúp tôi trước"
+- **Kế hoạch:** mục đích — Claude Code trên máy người dùng tự nạp quy tắc làm việc và tìm được tài liệu gốc; ảnh hưởng — thêm `CLAUDE.md` (gốc repo, ~100 dòng, không @import PROJECT_MEMORY để tránh tốn ngữ cảnh), thư mục `docs/sources/` (Project.docx, Project.md, Story.txt, working-rules.md), cập nhật README (bảng tài liệu) và PROJECT_MEMORY mục B; không đổi code. Rủi ro — `Project.md` là bản chuyển đổi tự động (đã ghi chú: bản .docx có giá trị cao nhất); tài liệu gốc vào git (≈ 90 KB, chấp nhận được).
+- **Ghi chú:** tài liệu gốc trước đây chỉ là file đính kèm trong cuộc trò chuyện, chưa nằm trên máy người dùng → "di chuyển" thực hiện bằng cách chép bản đã nhận vào `docs/sources/`.
+- **Self-Check:** nội dung CLAUDE.md lấy từ working-rules.md (SRC-3), DEC-000..008, README/docs hiện có; không thêm đặc tả mới. Trạng thái: xong phía AI.
+- **Việc tiếp theo (trong Claude Code):** người dùng cài Claude Code → commit → chạy `claude` tại gốc repo → áp dụng tái cấu trúc T-002 (xóa file cũ gây lỗi ESLint `react-refresh/only-export-components`) → `npm run check`.
+
+### T-009 — Áp dụng tái cấu trúc T-002 (bước B6) bằng Claude Code
+- Ngày giao: 09/10/2026 — người dùng: "thực thi việc còn dang dở T-002 bước B6 nếu không ảnh hưởng hay có rủi ro gì thì thực thi … nhớ cập nhật tiến trình sau khi hoàn thành"
+- REQ / WP / ISS liên quan: T-002, ISS-26, DEC-007
+
+#### Kế hoạch (DEC-003)
+- **Mục đích:** xóa file cũ, đưa Java từ `_migration/` vào package, kiểm thử thật frontend + backend.
+- **Ảnh hưởng:** xóa `package.json`/`package-lock.json` gốc, `frontend/src/{App.jsx,index.css,api,context,pages,components,utils}`, `frontend/src/game/{config.js,entities,managers}`, package Java cũ `config/controller/dto/model/repository/service`, `backend/target`, `_migration/`; thêm 32 file Java main + 1 test vào package; `npm install` frontend.
+- **Rủi ro & kiểm tra trước khi chạy:** mọi đường dẫn bị xóa đều đã được git theo dõi, không có sửa đổi chưa commit (HEAD `66b4c80` = điểm khôi phục, nên không tạo commit snapshot riêng); chỉ `backend/target/` là file chưa theo dõi (build output). Code mới không import đường dẫn cũ; `_migration` không tham chiếu package Java cũ; không có test backend cũ. Dry-run khớp README (không lỗi).
+- **Không làm (chưa được đồng ý):** xóa `PROGRESS_LOG-1.md`, commit.
+
+#### Bước con & checkpoint
+| Bước | Nội dung | Trạng thái | File tạo/sửa | Kiểm tra đã chạy & kết quả |
+|---|---|---|---|---|
+| B1 | Rà soát rủi ro + `apply-restructure.ps1 -DryRun` | Xong | — | 19 mục xóa, 33 file Java chép, không lỗi |
+| B2 | Chạy thật (`-Force`, đã tự rà soát thay cho lời nhắc YES) | Xong | như Ảnh hưởng | `_migration` đã xóa; `npm install`: 0 lỗ hổng |
+| B3 | `git add -A` + `git add --renormalize .` (chỉ stage) | Xong | — | 44 D, 32 R, 3 M — **chưa commit** |
+| B4 | Sửa xuống dòng: 6 file trên máy là CRLF trong khi git yêu cầu LF (`frontend/index.html` làm `prettier --check` báo lỗi) → lấy lại từ index | Xong | `backend/pom.xml`, `backend/src/main/resources/data.sql`, `docs/sources/{Story.txt,working-rules.md}`, `frontend/index.html`, `frontend/public/assets/dialogues/chapter-1.json` (chỉ đổi CRLF→LF, nội dung giữ nguyên) | `git ls-files --eol`: chỉ còn `.ps1` là CRLF (đúng ý định) |
+| B5 | `cd frontend; npm run check` | Xong | — | ESLint 0 lỗi (2 lỗi `react-refresh` cũ đã hết), Prettier sạch, Vitest **30/30**, Vite build OK |
+| B6 | `cd backend; mvn clean test` (Java 21.0.12, Maven 3.10.0) | Xong | — | `Tests run: 4, Failures: 0` — **BUILD SUCCESS**; không còn tham chiếu package cũ |
+| B7 | MySQL `schema.sql` + `spring-boot:run` + end-to-end (README Bước 5–7) | **Chưa làm** | — | Máy chưa có MySQL (không có lệnh `mysql`, không có service) |
+
+#### Kết quả
+- Đã hoàn thành: B1–B6. T-002 coi như xong phần cấu trúc; ISS-26 hết hiệu lực.
+- Chưa hoàn thành: B7 (cần MySQL); commit (chờ người dùng).
+- Điểm cần xác nhận: (1) **đề xuất** sửa `.gitattributes` — dòng `*.{ps1,cmd,bat} text eol=crlf` không có tác dụng vì gitattributes không hỗ trợ `{…}` (`git check-attr` cho `.ps1` ra `eol: lf`) → tách thành 3 dòng `*.ps1`, `*.cmd`, `*.bat`; (2) commit T-009; (3) xóa `PROGRESS_LOG-1.md` và 3 file `landlord-*.png` thừa.
+- Self-Check (A4): đạt — không đổi đặc tả, code, API hay schema; chỉ áp dụng script đã duyệt ở T-002 và chuẩn hóa xuống dòng; kết quả kiểm thử ghi đúng phạm vi đã chạy.
+- Bước tiếp theo: commit → MySQL + README Bước 5–7 → WP-02/03.
+
+
+### T-010 — Sửa `.gitattributes`, dọn file thừa, commit T-009
+- Ngày giao: 09/10/2026 — người dùng: "tôi xác nhận toàn bộ hãy làm đi" (đồng ý 4 điểm cần xác nhận của T-009)
+- **Kế hoạch:** mục đích — đóng các điểm chờ của T-009; ảnh hưởng — `.gitattributes` (tách `*.{ps1,cmd,bat}` thành 3 dòng), xóa `PROGRESS_LOG-1.md`, `frontend/public/assets/images/portraits/landlord-{angry,smirk,talk}.png`, commit trên nhánh `Nhan`; rủi ro — xóa nhầm dữ liệu (đã kiểm tra: `PROGRESS_LOG-1.md` là bản cũ chỉ có T-001/T-002, đều có trong `PROGRESS_LOG.md`; 3 PNG không còn được tham chiếu và trùng MD5 với bản trong `art-source/characters/landlord/`).
+- **Bước con:** B1 sửa `.gitattributes` → `git check-attr` cho `.ps1` = `eol: crlf` → B2 `git rm` 4 file → B3 `npm run check` lại: 30/30, build OK, exit 0 → B4 cập nhật log → B5 commit (chưa push).
+- **Chưa làm:** cài MySQL — cần người dùng tự cài và đặt mật khẩu root (AI không tự đặt/nhập mật khẩu cho tài khoản quản trị CSDL); push/PR — chưa được yêu cầu.
+- **Self-Check:** không đổi đặc tả, code, API, schema. Trạng thái: xong.

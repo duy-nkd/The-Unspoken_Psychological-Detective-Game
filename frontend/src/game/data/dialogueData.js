@@ -10,9 +10,11 @@ export const dialogueCacheKey = (chapter) => `dialogue-chapter-${chapter}`
 export const dialogueUrl = (chapter) => `assets/dialogues/chapter-${chapter}.json`
 
 /**
- * Chuẩn hóa file JSON -> { chapter, title, lines: [{ speaker, text, portrait }] }.
+ * Chuẩn hóa file JSON -> { chapter, title, lines: [{ speaker, text, portrait, character, expression, talk, position }] }.
  * Cấu trúc file hiện có trong repo: { chapter, title, dialogues: [] }.
- * PENDING(ISS-07): tên trường của từng câu thoại chưa được đặc tả; tạm đọc speaker/text/portrait.
+ * PENDING(ISS-07): tên trường của từng câu thoại chưa được đặc tả — đề xuất tạm:
+ *   character/expression/talk/position = nhân vật nửa thân trên sân khấu (xem data/characters.js)
+ *   portrait = texture key ô chân dung nhỏ (nhân vật chưa có ảnh nửa thân)
  */
 export function parseDialogueFile(raw) {
   if (!raw || typeof raw !== 'object') {
@@ -26,6 +28,10 @@ export function parseDialogueFile(raw) {
       speaker: line?.speaker ?? '',
       text: String(line?.text ?? ''),
       portrait: line?.portrait ?? null,
+      character: line?.character ?? null,
+      expression: line?.expression ?? null,
+      talk: line?.talk ?? null,
+      position: line?.position ?? null,
       index,
     })),
   }

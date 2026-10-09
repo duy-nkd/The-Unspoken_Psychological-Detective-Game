@@ -38,12 +38,14 @@ Mục tiêu: ai mở file nào cũng đoán được nó làm gì, lỗi xảy r
 
 **Asset mới**: đặt trong `public/assets/<loại>/`, nạp trong `PreloadScene.preload()`, dùng qua key.
 
+**Nhân vật mới / biểu cảm mới**: ảnh NỬA THÂN TRÊN nền trong suốt, mọi biểu cảm cùng khung hình (hiện dùng 783×990), `.webp`, tên `<id>-<biểu cảm>.webp` trong `public/assets/images/characters/` → khai báo trong `game/data/characters.js`. Câu thoại: `"character": "<id>", "expression": "<biểu cảm>", "talk": "<kiểu nhép>", "position": "left" | "right"`. Ảnh gốc độ phân giải cao đặt trong `art-source/` (không nạp vào game). Xem thử: chạy dev, bấm **F9**.
+
 ## 5. Debug nhanh
 | Muốn xem | Cách |
 |---|---|
 | Log chi tiết frontend | `VITE_DEBUG=true` trong `frontend/.env.local` (mặc định bật khi `npm run dev`) |
 | Trạng thái game | Console trình duyệt: `__THE_UNSPOKEN__.runtime.session` |
-| FPS, scene đang chạy | Debug Overlay góc dưới trái (phím `` ` `` ẩn/hiện) |
+| FPS, scene đang chạy | Debug Overlay góc trên phải (phím `` ` `` ẩn/hiện) |
 | Vị trí hotspot | Bật debug → viền vàng quanh vùng bấm |
 | Log backend chi tiết | Biến môi trường `LOG_LEVEL_APP=DEBUG` |
 | Câu SQL Hibernate | `LOG_SQL=DEBUG` |
