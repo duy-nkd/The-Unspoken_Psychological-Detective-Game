@@ -1,0 +1,50 @@
+Bối cảnh Nhân vật Chính
+Một thám tử tư sống ẩn dật tại một khu trọ xập xệ, kiếm sống bằng những vụ theo dõi ngoại tình hoặc tìm đồ thất lạc. Động lực duy nhất giữ anh lại với nghề là thảm kịch gia đình trong quá khứ: vụ sát hại tàn nhẫn cướp đi sinh mệnh của bố mẹ và người em gái duy nhất. Cảnh sát khép lại hồ sơ vì thiếu chứng cứ, nhưng ký ức về những mảnh ghép rời rạc trong đêm đó, đặc biệt là hình ảnh liên quan đến người em gái, vẫn luôn ám ảnh và trở thành mỏ neo cảm xúc, buộc anh phải mài giũa khả năng quan sát để chờ ngày tìm ra sự thật.
+
+Chương 1 — "Án mạng trong phòng trọ"
+
+Khu trọ xập xệ nơi thám tử sống nằm trong vùng quy hoạch của K-Estate. Trên tường dán một bài báo cũ phỏng vấn Chủ tịch Khang — trong đó có một câu tưởng như vô thưởng vô phạt: ông từng khởi nghiệp là một trắc địa viên nghèo trước khi lập nghiệp bất động sản. (Chi tiết Character + Main Mystery — sẽ không có ý nghĩa gì với người chơi lúc này, chỉ là color-text về nhân vật công khai đáng kính.) Cạnh đó là một tấm giấy khen nhỏ, chữ ký Khang tặng quỹ hỗ trợ khu trọ — chữ ký này không cần nhấn mạnh, chỉ là một chi tiết môi trường bình thường.
+
+Nạn nhân — Tùng, thanh niên phòng bên — chết gục trên bàn, cuống họng bị cào nát. Cảnh sát kết luận đột nhập trộm cắp dẫn đến lên cơn hen. Trong lúc điều tra, người chơi phát hiện Tùng gần đây làm thêm một công việc mờ ám: đi "khảo sát dân cư" từng phòng trọ dưới vỏ bọc nhân viên tiện ích — thực chất là thu thập thông tin ai đang nợ nần, ai dễ bị ép bán phòng, báo cáo cho một đường dây cho vay. Anh được trả công một phần bằng việc "xóa" khoản nợ của chính mình, và được cấp một đồng xu — như thẻ nhận diện nội bộ của mạng lưới.
+
+Gần đây Tùng bắt đầu áy náy, âm thầm cảnh báo vài người thuê trọ đừng ký giấy tờ gì cả — hành động này đe dọa tiến độ "thu gom" khu trọ. Gã bạn thân của Tùng, cũng đang mắc nợ cùng đường dây và bị bắt cóc con gái làm con tin, bị ép phải "xử lý" Tùng cho gọn — dùng hóa chất tráo vào ống xịt hen (hóa chất lấy từ một công ty vệ sinh công trình mà đường dây này đứng sau), dàn dựng thành tai nạn.
+
+Người chơi phải bóc trần lời khai sai của ông chủ trọ (lén trộm vặt) và cô hàng xóm (lấy cắp đồng hồ) — cả hai đều nói dối nhưng vô tội. Thêm một nghi phạm thứ ba: một gã đàn ông lạ mặt bị hàng xóm nhìn thấy lảng vảng quanh khu trọ đêm đó — ban đầu rất đáng ngờ, nhưng hóa ra chỉ là người của Vũ đến đòi nợ một phòng trọ khác, không liên quan đến cái chết của Tùng (thời gian không khớp). Cuối cùng, bằng chứng buộc tội đổ dồn về gã bạn thân.
+
+Hint ẩn: Đồng xu khắc hình mốc giới tìm thấy dưới nệm Tùng — giờ đã có lý do tồn tại: đó là "thẻ nội bộ" của mạng lưới anh từng tham gia, không phải vật ngẫu nhiên. Thám tử nhận ra hình khắc này giống hệt vết máu trên tường nhà mình 15 năm trước.
+
+Chương 2 — "Con hẻm nơi quán bar"
+
+Lâm — một tay buôn tin sống bằng nghề thu thập bí mật để bán/tống tiền — chết trong hẻm sau quán bar ngầm, hiện trường bị dàn dựng giống một vụ cướp. Là một kẻ thu thập-mọi-thứ chuyên nghiệp, sổ tay của Lâm chứa hàng chục manh mối rời rạc về nhiều người khác nhau trong thành phố — trong đó có một trang ghi vội mã "MG-07" mà anh nhặt được từ một người giao hàng nội bộ anh từng mua chuộc, đơn thuần vì bản năng nghề nghiệp "cái gì lạ cũng đáng ghi lại để dùng sau". Đây không phải lý do anh bị giết — nó chỉ là một trong nhiều sợi dây anh đang kéo, giúp người chơi hiểu Lâm là ai (kẻ sẵn sàng đào bới bất cứ bí mật nào để trục lợi).
+
+Người chơi có thể ban đầu nghi ngờ cái chết liên quan đến MG-07 — một giả thuyết hợp lý — nhưng bằng chứng vật lý (vết máu bị lau vội ở phòng VIP, biên nhận cầm đồ giấu trong lớp lót áo) cùng timeline sẽ dẫn về động cơ thật: chủ quán giết Lâm để bảo vệ con gái đang trốn truy nã, người mà Lâm phát hiện và định tống tiền. Tay bảo kê nói dối để bảo vệ ông chủ — vô tội với tội giết người. Một tay buôn tin khác, đối thủ cạnh tranh của Lâm, cũng xuất hiện với động cơ lẫn cơ hội đáng ngờ — nhưng bằng chứng loại trừ được hắn. Vũ được nhắc đến như khách quen hay dùng phòng riêng của quán để "nói chuyện làm ăn" — không liên quan vụ án, chỉ củng cố hình ảnh đáng sợ của hắn.
+
+Hint ẩn: Trang sổ ghi "MG-07" cùng vài dòng phác thảo về khu vực giải tỏa — mảnh ghép cho thấy đây không phải một vụ việc đơn lẻ, mà một hệ thống đang vận hành trên diện rộng.
+
+Chương 3 — "Phản bội"
+
+Ông Đạt — doanh nhân bất động sản — chết nghẹt trong phòng làm việc khóa kín. Ông từng là đối tác tài chính thời kỳ đầu của Khang, từng nhúng tay giúp hợp thức hóa một số phi vụ thu gom đất "nhạy cảm" 15 năm trước — trong đó có mảnh đất của gia đình thám tử. Ông giữ lại một hồ sơ bảo hiểm riêng ghi chép mọi phi vụ mình từng tham gia — không phải vì tình cờ, mà vì phòng thân, để có thứ mặc cả nếu Khang từng nghĩ đến việc loại bỏ ông.
+
+Người vợ nói dối về việc đọc sách ở phòng khách (thực tế lén tắt điện để ra ngoài gặp nhân tình) — vô tình tạo kẽ hở thời gian. Gã đối tác làm ăn phát hiện ông Đạt định biến mình thành vật tế cho một vụ gian lận sổ sách, siết cổ ông trong cơn hoảng loạn. Một kế toán trưởng của công ty cũng bị nghi ngờ (biết về gian lận, có động cơ che giấu) nhưng có bằng chứng ngoại phạm vững chắc. Vũ xuất hiện qua một đoạn ghi hình an ninh cũ — từng đến gặp riêng ông Đạt vài tuần trước, cuộc nói chuyện căng thẳng — không liên quan trực tiếp đến cái chết, nhưng đủ gieo nghi ngờ.
+
+Hint ẩn: Trong két sắt, cùng hồ sơ đất 15 năm trước, có một chiếc trâm gỗ — thứ ông Đạt giữ lại như "bằng chứng đã hoàn thành nhiệm vụ" theo lệ cũ của mạng lưới (đội thực thi phải nộp lại một vật cá nhân của mục tiêu để chứng minh đã "xử lý xong"). Với thám tử, đó là chiếc trâm anh tự tay đẽo tặng em gái năm 7 tuổi — thứ lẽ ra đã cháy cùng cô. Việc nó tồn tại như "bằng chứng hoàn thành" hàm ý: em gái anh không chết tại chỗ đêm đó — cô bị mang đi.
+
+Chương 4 — "Mối đe dọa"
+
+Ông Tư — cựu cảnh sát từng bị cấp trên "khuyên" ngừng đào lại vụ án gia đình thám tử 15 năm trước — chết cháy trong kho lưu trữ. Ông vốn đã âm thầm giữ một đoạn vi phim từ nhiều năm trước, do một người từng làm kiểm toán nội bộ cho K-Estate (ăn năn, muốn tố giác nhưng sợ hãi) gửi cho ông rồi biến mất. Khi thám tử bắt đầu lật lại vụ án, hệ thống coi ông Tư là mối đe dọa sống lại.
+
+Pháp y hiện trường 2.5D cho thấy hộp sọ bị đập vỡ trước khi lửa cháy — không phải chập điện. Gã thủ thư nhút nhát là thủ phạm, bị ép vì vợ cần ghép thận, được hứa hẹn đổi lại bằng một ca hiến tạng "thu xếp" từ chính mạng lưới. Trong lời khai đầy giằng xé, gã tiết lộ chi tiết bản lề: người ra lệnh cho gã không phải Vũ, mà là "một người mà ngay cả Vũ cũng phải xin phép." Đây là điểm rơi tự nhiên của chuỗi foreshadowing đã rải từ Ch1-3. Một cảnh sát trực ban (người từng ký kết luận "chập điện" quá nhanh) cũng bị nghi vấn nhận hối lộ — nhưng hóa ra chỉ đơn thuần lười biếng/áp lực khép hồ sơ, không có âm mưu — củng cố chủ đề "cả hệ thống dung túng" thay vì thêm một phản diện mới.
+
+Hint ẩn: Vi phim cháy xém chỉ còn sót một chữ ký ở góc — nét bút có một khuyên tròn nhỏ bất thường ở cuối chữ, rất đặc trưng. Thám tử thấy quen nhưng chưa nhớ ra ở đâu — game không ép người chơi phải nhận ra ngay; nếu họ đã để ý chữ ký trên giấy khen ở Ch1 (và các lần xuất hiện rải rác ở Ch2-3 dưới dạng ảnh báo, hóa đơn tài trợ), họ có thể tự đối chiếu ngay. Nếu chưa, Ch5 sẽ cho cơ hội thứ hai.
+
+Chương 5 — "Bằng chứng thép"
+
+Không có hiện trường án mạng mới. Thám tử theo tọa độ từ cuộn băng cassette về nền đất cũ của gia đình, dùng Flashback Tương tác — chuyển đổi giữa Hiện tại/Quá khứ trên cùng một không gian 2.5D, đối chiếu dấu vết thật với báo cáo giả mạo.
+
+Cơ chế trung tâm của màn cuối: một bàn ráp chứng cứ vật lý, nơi người chơi tự tay đặt cạnh nhau: mảnh chữ ký cháy xém (Ch4) và các lần xuất hiện chữ ký Khang đã thu thập được từ Ch1-3 (giấy khen, ảnh báo, hóa đơn tài trợ) — phóng to, xoay, so khớp nét khuyên tròn đặc trưng. Đây là hành động của người chơi, không phải lời kể của NPC.
+
+Song song, người chơi ráp: Mốc giới (Ch1, ý nghĩa "thẻ nội bộ") + MG-07 (Ch2, ý nghĩa "hệ thống trên diện rộng") + hồ sơ đất + hairpin (Ch3, ý nghĩa "gia đình là mục tiêu, em gái còn sống") + lời khai "người trên cả Vũ" (Ch4) + kết quả đối chiếu chữ ký → tự đưa ra theory buộc tội Khang.
+
+Cao trào: Khang xuất hiện, có Vũ đi cùng — người chơi nhận ra qua phản ứng của Vũ (sững sờ, tay run khi nghe nhắc đến sự thật 15 năm trước) rằng ngay cả hắn cũng không biết toàn bộ câu chuyện. Khang đưa ra thách thức: chứng minh được ông ta trực tiếp có mặt đêm đó, ông sẽ nói sự thật về em gái. Người chơi dùng Cross-Examination cuối cùng, đối chiếu các mâu thuẫn tích lũy suốt 4 chương.
+
+Kết thúc (giữ nguyên tinh thần, tinh chỉnh sắc thái moral ambiguity): Khang bị bắt nhờ báo động ông Tư cài sẵn trước khi chết. Trước khi bị áp giải, ông ta chỉ nói: "Con bé không hề bị bắt cóc. Nó lớn lên tin rằng tao đã cứu nó. Đường dây ở Chương 1 — nó có liên quan, nhiều hơn con nghĩ." Game không xác nhận rõ em gái biết bao nhiêu, đồng lõa đến đâu, hay đang tìm cách chống lại Khang từ bên trong — để lại một câu hỏi mở đầy sức nặng thay vì một plot twist chốt hạ.

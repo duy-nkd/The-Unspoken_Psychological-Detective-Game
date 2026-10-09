@@ -11,6 +11,8 @@
 ## Tài liệu trong repo
 | File | Nội dung |
 |---|---|
+| `CLAUDE.md` | Hướng dẫn cho Claude Code: quy tắc làm việc, lệnh, cấu trúc — tự đọc khi chạy `claude` |
+| `docs/sources/` | Tài liệu gốc: `Project.docx` (+ bản `.md`), `Story.txt`, `working-rules.md` — không sửa |
 | `PROJECT_MEMORY.md` | Yêu cầu trích từ Project.docx/Story.txt, điểm chờ xác nhận (ISS), quyết định đã duyệt (DEC) |
 | `PROGRESS_LOG.md` | Nhật ký tiến độ + điểm khôi phục |
 | `docs/ARCHITECTURE.md` | Cấu trúc thư mục, luồng dữ liệu, bản đồ yêu cầu → mã nguồn |
@@ -98,7 +100,7 @@ Mở `http://localhost:5173`:
 3. **New Game** → bấm qua hội thoại → màn điều tra.
 4. **N** mở/đóng Sổ tay 4 tab.
 5. **S** lưu → hiện *"Đã lưu tạm trên trình duyệt (offline)"* — **đúng** ở thời điểm này vì login chưa trả `userId` (ISS-29).
-6. F12 → Console: không có lỗi đỏ. Phím `` ` `` bật/tắt bảng debug góc dưới trái.
+6. F12 → Console: không có lỗi đỏ. Phím `` ` `` bật/tắt bảng debug góc trên phải; **F9** xem thử chủ trọ đứng trái/phải và nhép miệng (hội thoại DEMO).
 
 ### Bước 8 — Commit kết quả
 ```powershell

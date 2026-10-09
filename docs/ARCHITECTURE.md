@@ -39,7 +39,8 @@ frontend/
 ├─ index.html · vite.config.js · eslint.config.js · .prettierrc.json · .env.example
 ├─ public/assets/
 │  ├─ dialogues/chapter-1.json          JSON kịch bản (§3.2) — PENDING(ISS-07) schema
-│  ├─ images/{backgrounds,portraits,evidence,ui}/
+│  ├─ images/{backgrounds,portraits,evidence,ui}/   portraits = chân dung VUÔNG 512×512 (.webp, ô chân dung nhỏ — hiện chưa nạp)
+│  ├─ images/characters/               ảnh NỬA THÂN TRÊN nền trong suốt (.webp) — nhân vật đứng trái/phải khi hội thoại
 │  └─ audio/{bgm,sfx}/
 └─ src/
    ├─ main.jsx                           điểm vào React
@@ -68,10 +69,12 @@ frontend/
       ├─ core/GameSession.js             trạng thái ván chơi: chapter, credibility, notebook
       ├─ core/runtime.js                 session + autosave, lưu trong game.registry
       ├─ data/dialogueData.js            nơi DUY NHẤT biết cấu trúc file JSON hội thoại
+      ├─ data/characters.js              nơi DUY NHẤT khai báo nhân vật: ảnh nửa thân, biểu cảm, nhép miệng, bên đứng
       ├─ systems/credibility.js          max(0, c − ΔP) (§3.3)
       ├─ systems/notebook.js             4 tab Evidence/People/Timeline/Statements (§3.2)
       ├─ systems/autosave.js             5 phút + sự kiện quan trọng (§5.2)
-      ├─ ui/{DialogueBox, CredibilityBar, Hotspot, TextButton, theme}.js
+      ├─ systems/lipSync.js              dừng miệng ở dấu câu khi chữ đang chạy
+      ├─ ui/{DialogueBox, CharacterStage, CredibilityBar, Hotspot, TextButton, theme}.js   CharacterStage = nhân vật nửa thân trái/phải
       ├─ scenes/                          Boot → Preload → MainMenu → Dialogue → RoomInvestigation
       │                                   (+ Notebook overlay, Deduction, BadEnding)
       └─ debug/DebugScene.js             overlay FPS/scene/uy tín — chỉ khi env.debug

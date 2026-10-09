@@ -28,6 +28,7 @@ export const DEPTH = Object.freeze({
   BACKGROUND: 0,
   HOTSPOT: 10,
   HUD: 100,
+  CHARACTER: 150, // nhân vật nửa thân (CharacterStage) — sau khung thoại
   OVERLAY: 200,
   DEBUG: 1000,
 })
