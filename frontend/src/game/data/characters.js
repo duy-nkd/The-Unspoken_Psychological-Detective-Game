@@ -24,6 +24,9 @@ export const spriteUrl = (characterId, expression) =>
   `${SPRITE_DIR}/${characterId}-${expression}.webp`
 export const talkAnimKey = (characterId, mood) => `talk-${characterId}-${mood}`
 
+// Miệng khép → hé → mở → hé. Khung đầu cũng là tư thế nghỉ ở dấu câu.
+const LANDLORD_STORY_MOUTH_FRAMES = Object.freeze(['smirk', 'stern', 'talk', 'stern'])
+
 export const CHARACTERS = Object.freeze({
   landlord: Object.freeze({
     id: 'landlord',
@@ -33,10 +36,11 @@ export const CHARACTERS = Object.freeze({
     expressions: Object.freeze(['smirk', 'stern', 'talk']),
     defaultExpression: 'smirk',
     defaultSide: 'right',
-    // TẠM: tốc độ nhép miệng là thông số kỹ thuật, tài liệu chưa quy định.
     talk: Object.freeze({
       normal: Object.freeze({ frames: Object.freeze(['stern', 'talk']), frameRate: 7 }),
       smug: Object.freeze({ frames: Object.freeze(['smirk', 'talk']), frameRate: 6 }),
+      'story-normal': Object.freeze({ frames: LANDLORD_STORY_MOUTH_FRAMES, frameRate: 12 }),
+      'story-smug': Object.freeze({ frames: LANDLORD_STORY_MOUTH_FRAMES, frameRate: 10 }),
     }),
   }),
 })

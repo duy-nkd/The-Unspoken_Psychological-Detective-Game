@@ -19,6 +19,7 @@ export const AUTOSAVE = Object.freeze({
     INTERVAL: 'interval',
     MANUAL: 'manual',
     EVIDENCE_COLLECTED: 'evidence-collected',
+    STORY_PROGRESS: 'story-progress',
   }),
 })
 
@@ -43,7 +44,9 @@ export const FIRST_CHAPTER = 1
  */
 export const ROOM_MOVEMENT = Object.freeze({
   WALK_SPEED: 220, // DEC-014: nhân vật nhỏ hơn -> giảm theo để bước chân không "trượt"
-  WALK_ANIM_FPS: 10,
+  // T-026: chu kỳ đi 6 khung mới, bước chân ≈ 0,27 chiều cao người -> lật ~7,4 hình/giây thì chân khớp
+  // sàn ở WALK_SPEED 220 (6 × 220 / (2 × 0,27 × 330)); làm tròn 8. Đổi WALK_SPEED thì tính lại.
+  WALK_ANIM_FPS: 8,
   /** Biên độ nhún (px, ở mốc gần) khi đi dọc — tạm thay chu kỳ đi lên/xuống còn thiếu (Q-R5). */
   BOB_HEIGHT: 6,
   BOB_PERIOD_MS: 320,

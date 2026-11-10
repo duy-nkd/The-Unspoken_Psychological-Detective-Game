@@ -1,0 +1,126 @@
+{
+  "id": "CH1_EVIDENCE_DATABASE",
+  "records": [
+    {
+      "id": "EV_LooseLock",
+      "name": "Ổ khóa cửa 204",
+      "text": "Chốt tự động cửa 204 lỏng. Theo kiểm tra của cảnh sát, nếu không chủ động bấm chốt, tay nắm ngoài có thể mở cửa. Không xác định trạng thái chốt tại lúc xảy ra án.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_WetTowel",
+      "name": "Bồn rửa và khăn mặt",
+      "text": "Khăn trên giá cạnh bồn còn ướt lạnh; vòi đóng chưa chặt. Dấu sử dụng phù hợp việc rửa mặt nhưng không xác định người dùng hay phút sử dụng.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_NeckScratches",
+      "name": "Vùng cổ và ngực áo Tùng",
+      "text": "Ba vết cào đỏ rướm máu trên cổ, cổ áo xộc xệch. Phù hợp hướng tự cào trong cơn khó thở; nguyên nhân tử vong và khả năng ngoại lực chưa kết luận bằng ảnh này.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_Inhaler",
+      "name": "Ống hít hen suyễn",
+      "text": "Ống hít xanh nhạt nằm trên bàn, nắp mở. Có dấu chuẩn bị sử dụng, chưa xác nhận ai dùng, nội dung thuốc hoặc việc thay ống. Vật thật do cảnh sát quản lý.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_InhalerBox",
+      "name": "Thùng rác và hộp thuốc đã bóc",
+      "text": "Hộp giấy của một ống hít loại mới, đã bóc và bị nhàu, ở thùng rác dưới bàn. Có mép giấy rách trong ảnh. Chưa xác định ai bóc, giờ bỏ hoặc hộp thuộc đúng ống trên bàn.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_RentReceipt",
+      "name": "Liên biên nhận thu tiền nhà",
+      "text": "Biên nhận tiền phòng nằm trên bàn 204, dưới mép gạt tàn. Chữ ký Hòa ở mục người thu; ghi giờ 20:55. Giờ trên giấy chưa là timestamp độc lập của giao dịch; cần đối chiếu lời Hòa.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_MissingWatch",
+      "name": "Vòng trống trên lớp bụi mặt tủ",
+      "text": "Khoảng sạch hình tròn trên bụi mặt tủ đầu giường, cỡ mặt đồng hồ đeo tay; đồng hồ báo thức nứt còn ở cạnh. Gợi một món đồ bị lấy đi, chưa xác định người lấy, chủ sở hữu hoặc giờ.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_BoundaryCoin",
+      "name": "Giường, mép nệm; sau chi tiết mới gọi đồng xu lạ",
+      "text": "Đồng xu kim loại xỉn, nặng theo ghi nhận cảnh sát, khắc biểu tượng hình học giống mốc ranh giới; tìm dưới nệm Tùng. Công dụng chưa rõ.",
+      "status": "unknown",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_PackagingMatch",
+      "name": "Mảnh hộp khớp",
+      "text": "Mảnh nắp giấy trong đồ Minh giao kiểm tra khớp mép rách/họa tiết hộp thuốc ở 204. Cảnh sát ghi nguồn và ảnh đối chiếu; chưa xác định phút xử lý hộp, chất bên trong hoặc ý định.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_OriginalInhaler",
+      "name": "Ống cũ thu theo chỉ dẫn",
+      "text": "Ống cũ tìm đúng hốc chân cầu thang do Minh chỉ trước lúc tìm. Nhãn cá nhân đối chiếu hồ sơ thuốc Tùng; ảnh/nguồn do cảnh sát ghi. Nội dung thuốc chưa có kết quả kiểm tra ở bước này.",
+      "status": "observed",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_MedicineAnalysis",
+      "name": "Báo cáo hai ống và nạn nhân",
+      "text": "Ống bàn khác thuốc ghi nhãn/nhóm hóa chất vệ sinh; ống cũ phù hợp thuốc. Hồ sơ đối chiếu nạn nhân phù hợp chất trong ống bàn gây diễn biến hô hấp dẫn tới cái chết. Không xác định tên công ty, người chuẩn bị hoặc mức biết độc tính của Minh.",
+      "status": "professional_record",
+      "physical_custody": "police"
+    },
+    {
+      "id": "EV_KhangCertificate",
+      "name": "Ảnh giấy khen",
+      "text": "Ảnh giấy khen hỗ trợ khu trọ, chữ ký Khang. Mẫu tài liệu công khai, chưa có liên hệ chứng minh với cái chết Tùng.",
+      "status": "observed",
+      "physical_custody": "public_document"
+    }
+  ],
+  "requiredForP2Exit": [
+    "EV_LooseLock",
+    "EV_NeckScratches",
+    "EV_Inhaler",
+    "EV_RentReceipt",
+    "EV_MissingWatch"
+  ],
+  "requiredBeforeP3Samples": [
+    "EV_LooseLock",
+    "EV_NeckScratches",
+    "EV_Inhaler",
+    "EV_RentReceipt",
+    "EV_MissingWatch",
+    "EV_WetTowel",
+    "EV_InhalerBox",
+    "EV_PackagingMatch",
+    "EV_OriginalInhaler"
+  ],
+  "requiredForFinal": [
+    "EV_LooseLock",
+    "EV_NeckScratches",
+    "EV_Inhaler",
+    "EV_RentReceipt",
+    "EV_MissingWatch",
+    "EV_WetTowel",
+    "EV_InhalerBox",
+    "EV_PackagingMatch",
+    "EV_OriginalInhaler",
+    "EV_MedicineAnalysis"
+  ],
+  "environmentalObservationIds": [
+    "OBS_P2_SURVEY"
+  ],
+  "notAnEvidence": [
+    "tờ khảo sát cư dân"
+  ],
+  "acquisitionPolicy": "records here are catalogue only; they are not collected on load"
+}

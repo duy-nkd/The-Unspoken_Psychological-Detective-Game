@@ -101,14 +101,23 @@ frontend/
 ```
 
 ### Luồng scene
+
 ```
-Boot ─► Preload (JSON, font, nền phòng, atlas) ─► MainMenu ─Ván mới─► [Intro: bổ sung sau]
-                                  │ ▲                                   ─► RoomInvestigation(room201 + tutorial)
-                       Cài đặt ⇄ Settings (launch + pause)                   │ N ⇄ Notebook (launch + pause; nút Lưu)
-                                                                             │ cửa 201 ⇄ cửa A201: RoomInvestigation(hallway)
-                                    └──── BadEnding ◄── uy tín = 0 ──────────┘   (restart scene + tối/sáng màn hình — DEC-015)
-                                                                                 (PENDING Q3–Q5: nối P1_001)
+Boot ─► Preload ─► MainMenu ⇄ Settings
+                      │ Ván mới
+                      ▼
+                 RoomInvestigation (tutorial phòng 201)
+                      │ ra cửa hoặc bỏ qua tutorial
+                      ▼
+                 StoryScene (runner Data Contract 2.0)
+                      ├─⇄ RoomInvestigation (hành lang và phòng 204)
+                      ├─⇄ Notebook (Lời khai, Lịch sử trò chuyện, lưu)
+                      ├── Suy luận, Bad Ending và tải checkpoint theo graph
+                      └── Tiêu đề Chương 2 ─► CH2_ENTRY
 ```
+
+`StoryScene` hiển thị nút hiện tại. Các lựa chọn hợp lệ và giao dịch kịch bản do `game/narrative/storyRunner.js` xử lý.
+Điểm bấm và điểm đứng nằm trong `game/data/rooms/room204.js`. Hotspot chọn nhánh qua `game/data/storyMap.js`.
 
 ### Thiết lập & ngôn ngữ (DEC-012)
 ```
@@ -121,11 +130,12 @@ React useGameBridge ─ 'save:availability' { hasSave } ─► runtime.saveAvail
 
 ### Luồng lưu game (§5.2, §6.3)
 ```
-Phaser: runtime.requestSave(reason)  ── lý do: interval 5' | manual (S) | evidence-collected
+Phaser: runtime.requestSave(reason)  ── định kỳ 5 phút | nút Lưu trong Sổ tay | vật chứng | đổi phase/checkpoint
    └─ EventBus.emit('save:requested', { reason, snapshot })
 React: useGameBridge ─► saveService.persistProgress
-   ├─ 1. localStorage (luôn luôn)
-   └─ 2. POST /api/game/save  ── mất mạng → { remote:false, reason:'offline' }, không crash
+   ├─ 1. localStorage theo tài khoản (state v2, tutorial, vị trí khi đi lại)
+   └─ 2. POST /api/game/save khi đã có userId (ISS-29)
+Tiếp tục điều tra ─► useGameBridge đọc bản lưu cục bộ ─► runner mở lại current_node
 ```
 
 ## 3. Backend — `backend/src/main/java/com/capstone/detectivegame`

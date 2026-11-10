@@ -79,10 +79,19 @@ scripts/apply-restructure.ps1                       áp dụng tái cấu trúc 
   `game/entities/Player.js`, va chạm/tìm đường/tutorial là logic thuần trong `game/systems/`. Lời khi xem đồ vật nằm
   ở file riêng `frontend/public/assets/dialogues/<phòng>-inspect.json` (nhóm tự điền, AI không viết). Lưu game nằm trong
   Sổ tay (không có phím tắt lưu). Cỡ nhân vật/vùng đi phòng 201 theo DEC-014 (lùi sân khấu, y ≤ 615, cao 215→330 px).
-  Asset phòng/nhân vật dựng bằng `scripts/art/build_room201_assets.py` (xóa dấu ✦, tách nền, atlas).
+  Asset phòng dựng bằng `scripts/art/build_room201_assets.py` (xóa dấu ✦, tách nền).
+- Thám tử (DEC-021, 03/11/2026): dùng lại NHÂN VẬT CŨ — atlas `detective.webp/json` (đi ngang 6 khung `walk-side-*`
+  8 hình/giây, đi sang phải = lật gương; đi lên/xuống dùng tư thế đứng + nhún; 220 px/giây mọi hướng). Thiết kế mới
+  V6c (DEC-020) đang CẤT, không dùng: ảnh ở `art-source/characters/detective/walk-4dir-v6c-t041/`, code tích hợp ở
+  `…/walk-4dir-v6c-t041/integration/` (README_KHOI_PHUC.md hướng dẫn bật lại).
 - Hành lang tầng 2 (DEC-015, `game/data/rooms/hallway.js`): cửa phòng 201 ⇄ cửa A201 (hotspot `action: 'exit'` +
   `target.roomId`, phòng đích khai báo `entrances[id phòng vừa rời]`). Lớp che có `baseY` xếp chiều sâu với nhân vật,
   không có `baseY` = luôn đè (lan can). Lời xem đồ ở `hallway-inspect.json`. Asset: `scripts/art/build_hallway_assets.py`.
+- Kịch bản = Data Contract 2.0 (DEC-016, kế hoạch `docs/NARRATIVE_ENGINE_PLAN.md`): game đọc
+  `frontend/public/assets/chapters/chapter1/*.json` (khai báo ở `game/data/chapters.js`); bản trong `docs/sources/chapter1/`
+  là gốc, không sửa. Sửa dữ liệu xong chạy `python scripts/chapter1/validate.py`. Save = state v2 + khối vị trí nhân vật
+  cạnh state (DEC-019). Bộ chạy kịch bản là JS thuần ở `game/narrative/` (không import Phaser/React, mọi module có test);
+  ngữ nghĩa phải khớp `validate_data.py` của gói (đúng/sai kiểu Python, route đúng ĐẦU TIÊN theo thứ tự mảng).
 - Không sửa `schema.sql` khác Project.docx; không đổi chữ ký API §4.3 khi chưa được duyệt.
 
 ## 6. Lệnh

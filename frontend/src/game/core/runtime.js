@@ -1,5 +1,6 @@
 import { GAME_EVENTS } from '../constants/gameEvents'
 import { AUTOSAVE } from '../constants/gameplay'
+import { createStoryRunner } from '../narrative/storyRunner'
 import { createAutosaveScheduler } from '../systems/autosave'
 import { translate } from '../systems/i18n'
 import { EventBus } from './EventBus'
@@ -14,6 +15,7 @@ const REGISTRY_KEY = 'runtime'
  */
 export function createRuntime() {
   let session = new GameSession()
+  let runner = null
   let started = false
   // React báo qua SAVE_AVAILABILITY (useGameBridge); mặc định false tới khi nhận được tin
   let saveAvailable = false
@@ -39,6 +41,9 @@ export function createRuntime() {
     get session() {
       return session
     },
+    get story() {
+      return runner
+    },
     /** Kho thiết lập người chơi (core/settingsStore.js): settings.get() / settings.set(next). */
     settings,
     /** Trình duyệt có bản lưu không (để mờ "Tiếp tục điều tra", hỏi trước khi ghi đè). */
@@ -49,10 +54,40 @@ export function createRuntime() {
     t(key, params) {
       return translate(settings.get().language, key, params)
     },
-    startNewGame() {
-      session = new GameSession()
+    startNewGame(initialState) {
+      this.startSession(new GameSession(), initialState)
+    },
+    startSession(nextSession, initialState) {
+      session = nextSession
+      runner = null
+      if (!session.story && initialState) session.setStory(initialState)
       started = true
       autosave.start()
+    },
+    startStory(graph) {
+      if (runner) return runner
+      runner = createStoryRunner(graph, session.story, {
+        onChange(state, previous) {
+          session.setStory(state)
+          if (state.credibility !== previous.credibility) {
+            EventBus.emit(GAME_EVENTS.CREDIBILITY_CHANGED, {
+              value: state.credibility,
+              depleted: state.credibility <= 0,
+            })
+          }
+          if (state.evidence_collected.length > previous.evidence_collected.length) {
+            autosave.trigger(AUTOSAVE.REASONS.EVIDENCE_COLLECTED)
+          }
+          if (
+            state.current_phase !== previous.current_phase ||
+            Object.keys(state.checkpoints).length !== Object.keys(previous.checkpoints).length
+          ) {
+            autosave.trigger(AUTOSAVE.REASONS.STORY_PROGRESS)
+          }
+        },
+      })
+      session.setStory(runner.state)
+      return runner
     },
     /** §5.2: lưu thủ công bất kỳ lúc nào — nút "Lưu tiến trình" trong Sổ tay (DEC-013 Q-R6). */
     saveNow() {

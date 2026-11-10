@@ -34,12 +34,27 @@ describe('characters — danh mục nhân vật', () => {
     expect(registerCharacterAnimations(anims)).toEqual([
       talkAnimKey('landlord', 'normal'),
       talkAnimKey('landlord', 'smug'),
+      talkAnimKey('landlord', 'story-normal'),
+      talkAnimKey('landlord', 'story-smug'),
     ])
-    expect(store.get('talk-landlord-normal').frames).toEqual([
+    expect(store.get('talk-landlord-normal')).toMatchObject({
+      frames: [{ key: spriteKey('landlord', 'stern') }, { key: spriteKey('landlord', 'talk') }],
+      frameRate: 7,
+      repeat: -1,
+    })
+    expect(store.get('talk-landlord-smug')).toMatchObject({
+      frames: [{ key: spriteKey('landlord', 'smirk') }, { key: spriteKey('landlord', 'talk') }],
+      frameRate: 6,
+    })
+    expect(store.get('talk-landlord-story-normal').frames).toEqual([
+      { key: spriteKey('landlord', 'smirk') },
       { key: spriteKey('landlord', 'stern') },
       { key: spriteKey('landlord', 'talk') },
+      { key: spriteKey('landlord', 'stern') },
     ])
-    expect(store.get('talk-landlord-normal').repeat).toBe(-1)
+    expect(store.get('talk-landlord-story-smug').frames).toEqual(
+      store.get('talk-landlord-story-normal').frames,
+    )
     expect(registerCharacterAnimations(anims)).toEqual([])
   })
 })

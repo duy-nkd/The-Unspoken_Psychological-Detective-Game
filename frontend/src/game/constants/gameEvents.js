@@ -7,6 +7,8 @@ export const GAME_EVENTS = Object.freeze({
   SAVE_REQUESTED: 'save:requested',
   /** Phaser -> React. payload: none — người chơi bấm Load Game ở MainMenu */
   LOAD_REQUESTED: 'save:load-requested',
+  /** React -> Phaser. Payload là snapshot lưu cục bộ. */
+  LOAD_RESULT: 'save:load-result',
   /** Phaser -> React. payload: none — người chơi chọn tải checkpoint ở Bad Ending */
   CHECKPOINT_RELOAD_REQUESTED: 'save:checkpoint-reload-requested',
   /** Phaser nội bộ. payload: { value: number, depleted: boolean } */

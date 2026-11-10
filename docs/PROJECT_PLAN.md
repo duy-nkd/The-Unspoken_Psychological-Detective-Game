@@ -1,39 +1,145 @@
-# KẾ HOẠCH DỰ ÁN — The Unspoken (cập nhật 20/10/2026, T-019 → T-020)
+# KẾ HOẠCH DỰ ÁN — The Unspoken (cập nhật 27/10/2026, T-025)
 
-> Trạng thái: mục 1–2 **[ĐỀ XUẤT — chờ duyệt]**. Mục 3 (Menu & Cài đặt) **ĐÃ CHỐT — DEC-012** (20/10/2026 14:00: "tôi chốt thiết kế hiện tại … bỏ phần [Hiển thị] … giữ nguyên các phần còn lại, chốt phương án và thực thi"); kế hoạch code ở mục 3.9, đang thực thi (T-020).
-> Căn cứ: Project.docx (§3.2, §3.3, §5.2, §6.1–6.3), Story.txt, PROJECT_MEMORY (DEC-000..011, ISS-xx), `docs/chapter1/CHAPTER1_PLAN.md`, hiện trạng code đã đọc ở T-015/T-018.
-> Nhãn: [NGUỒN] tài liệu quy định · [YÊU CẦU 20/10] người dùng yêu cầu trong lượt này · [ĐỀ XUẤT] AI đề xuất, chờ duyệt · [THIẾU] tài liệu chưa có.
-
----
-
-## 1. Hiện trạng (tóm tắt)
-
-| Hạng mục | Trạng thái |
-|---|---|
-| Nền móng full-stack | Đã chạy thật (T-011): đăng ký/đăng nhập JWT, MySQL, React ↔ Phaser qua EventBus |
-| Demo game | Menu chữ đơn giản → hội thoại (Hòa nửa thân + nhép miệng) → màn điều tra khung → Sổ tay 4 tab → lưu localStorage. Được đánh giá tích cực (20/10) |
-| Chương 1 | Gói nội dung đầy đủ (SRC-5, 1257 node, validator PASS) — **chưa tích hợp**, chờ Q3–Q5 |
-| Lưu server | Code có, chưa chạy được — ISS-29 (login không trả `userId`) |
-| Admin Dashboard | Khung — chờ API admin (ISS-10/11/12) |
-| Âm thanh, ảnh nền, sprite NPC khác | Chưa có asset (ISS-27); thư mục `audio/bgm`, `audio/sfx` đang trống |
-
-## 2. Lộ trình còn lại (thứ tự đề xuất)
-
-| Giai đoạn | Nội dung | Phụ thuộc / bị chặn bởi | Mốc §6.1 |
-|---|---|---|---|
-| **A — Menu chính & Cài đặt** (đang làm, mục 3) | Menu có phong cách trinh thám, màn Cài đặt (âm thanh, trò chơi, ngôn ngữ VI/EN) — bỏ tab Hiển thị (DEC-012) | Không bị chặn | Hoàn thiện REQ-020 (MainMenuScene) |
-| **A2 — Phòng 201: di chuyển + tutorial** (T-021, đề xuất) | Nhân vật đi trong phòng không xuyên tường/đồ, tương tác vật, tutorial; kế hoạch 10 phase ở `docs/ROOM201_TUTORIAL_PLAN.md` | Q-R1…Q-R9 | Bước đầu của Chương 1 (mở ở 201) |
-| **B — Tích hợp Chương 1** | WP-C1..C10 trong `docs/chapter1/CHAPTER1_PLAN.md`: bộ chạy kịch bản, hội thoại, khám 204, Press/Present, Notebook, Final, P4 | Q3, Q4, Q5 | Notebook & Deduction (Tuần 6) → Ch1 thông suốt |
-| **C — Lưu/tải server + Load Game** | Save = state v2, Load Game ở menu, checkpoint, đồng bộ offline | ISS-29, ISS-05, ISS-18 | REQ-030, REQ-064 |
-| **D — Admin Dashboard** | Số tài khoản hoạt động, % hoàn thành chương, bảng bug PENDING→RESOLVED | ISS-10, ISS-11, ISS-12 | Tuần 8 |
-| **E — Kiểm thử E2E + hồ sơ bảo vệ GĐ1** | Kịch bản §5.2, biên bản chạy thật, đối chiếu REQ | B, C, D | Tuần 12 |
-| F — Capstone 2/3 | Ch2–4, Complex Deduction Trees; Ch5, Flashback, bàn ráp chữ ký, BGM/SFX | Đặc tả + nội dung mới | C2, C3 |
-
-Giai đoạn A **không bị chặn** bởi Q3–Q5 nên làm được ngay; các thiết lập của A (tốc độ chữ, âm lượng, ngôn ngữ) sẽ được giai đoạn B dùng lại.
+> Trạng thái: mục 1 là **hiện trạng đã kiểm tra trên máy** (27/10, commit `b744ce7` trên `master`). Mục 2–2b là **[ĐỀ XUẤT — chờ duyệt]** (thứ tự, cách chia việc); việc nào đụng đặc tả/cốt truyện/API/dữ liệu lưu vẫn phải hỏi trước khi làm.
+> Mục 3 (Menu & Cài đặt, T-019/T-020) giữ lại làm lịch sử — **ĐÃ CHỐT DEC-012**.
+> Căn cứ: Project.docx (§3.2, §3.3, §4.2–4.3, §5.1–5.2, §6.1–6.3), Story.txt, gói Chương 1 (`docs/chapter1/CHAPTER1_MEMORY.md`, `CHAPTER1_PLAN.md`), PROJECT_MEMORY (DEC-000..015, ISS-xx), PROGRESS_LOG đến T-024.
+> Mốc tuần (§6.1) chỉ để tham khảo (DEC-004). Ước tính lịch nếu coi Tuần 1 bắt đầu 07/10/2026 (ngày tạo khung repo): Tuần 6 ≈ 11–17/11 · Tuần 8 ≈ 25/11–01/12 · Tuần 12 ≈ 23–29/12 — **cần nhóm xác nhận ngày bắt đầu thật**.
 
 ---
 
-## 3. Bước tiếp theo — Menu chính & Cài đặt
+## 1. Hiện trạng (kiểm tra 27/10/2026)
+
+| Khu vực | Đã có, chạy được | Còn thiếu / ghi chú |
+|---|---|---|
+| Nền full-stack | React 19 + Vite + Phaser 4.2.1, router, AuthContext; Spring Boot: register/login JWT, `/api/game/save`, `/api/game/load/{userId}`, `/api/reports/bug`, SecurityConfig, MySQL schema §2.1 (T-009..T-011 chạy thật) | Login không trả `userId` (ISS-29) → lưu server chưa dùng được; backend mới có 1 test (`JwtTokenProviderTest`) |
+| Menu & Cài đặt | Menu chính (Ván mới / Tiếp tục / Cài đặt / nút loa), Cài đặt 2 tab, VI/EN giao diện (DEC-012) | "Tiếp tục điều tra" chỉ phát sự kiện, chưa tải được (ISS-05/29); thiếu font Playfair Display + Be Vietnam Pro |
+| Phòng 201 | Nền thật, đi phím/chuột, A*, không xuyên tường, phối cảnh DEC-014, tutorial 4 bước, 5 điểm xem, lưu trong Sổ tay (DEC-013/014) | Lời xem đồ vật trống; thiếu ảnh đi lên/xuống (Q-R5), WC (Q-R7), intro |
+| Hành lang tầng 2 | Nền thật, vùng đi chữ U, lan can/chậu cây che đúng chiều sâu, cửa 201 ⇄ A201, 5 điểm xem (DEC-015) | A204 → phòng 204, cầu thang, giấy khen, lưu vị trí phòng — chờ xác nhận |
+| Hội thoại | DialogueBox (typewriter, nhép miệng), CharacterStage nửa thân (Hòa 3 biểu cảm) | Đang dùng định dạng tạm + `chapter-1.json` demo; **chưa nối gói Chương 1** (Q3, Q4) |
+| Sổ tay / Uy tín / Bad Ending / Deduction | Khung: Notebook 4 tab (cấu trúc cũ), `credibility` max(0, c−ΔP) có test, BadEndingScene, DeductionScene khung | Chưa có Press/Present, Final Deduction 8 ô, checkpoint thật — nằm trong WP-C2/C5/C6/C7 |
+| Chương 1 (gói SRC-5) | Dữ liệu 1257 node, Data Contract 2.0, validator PASS — lưu ở `docs/sources/chapter1/` | **Chưa tích hợp** — chờ Q3 (định dạng chính thức), Q4 (duyệt văn bản P2–P4), Q5 (asset) |
+| Admin Dashboard | Trang khung 3 ô | Chưa có API admin, ROLE_ADMIN, định nghĩa chỉ số, công nghệ "thời gian thực" (ISS-10/11/12) |
+| Asset | Nền room201, hallway; thám tử (atlas đi ngang + đứng 4 hướng); Hòa 3 biểu cảm | Phòng 204, NPC Linh/Hào/Minh/Cảnh sát, ảnh 12 vật chứng, âm thanh (`audio/bgm`, `audio/sfx` trống). `characters/main1–3.png` (937×1678, 5,2 MB, từ 09/10) chưa được code nào dùng |
+| Kiểm thử | 20 file test frontend / 110 ca (bộ chạy thay thế của AI); ESLint của dự án sạch trên máy | **`npm run check` thật chưa chạy cho T-020 → T-024**; `mvn test` chưa chạy lại; chưa có E2E |
+| Repo / bảo mật | `master` = `origin/master` = `b744ce7` | ⚠ `b744ce7` đưa lên `application.yml` có **mật khẩu MySQL ghi cứng** làm giá trị mặc định; commit đẩy thẳng `master` (quy ước: nhánh + PR); `frontend/package-lock.json` bị đổi do khác phiên bản npm; file thừa ở gốc (`package-lock.json` rỗng, `node_modules/` 114 MB); `frontend/index.html` xuống dòng CRLF làm Prettier báo lỗi |
+
+## 2. Lộ trình triển khai (đề xuất thứ tự)
+
+| Giai đoạn | Mục tiêu | Gồm việc (mục 2a) | Bị chặn bởi | Mốc §6.1 |
+|---|---|---|---|---|
+| **0 — Ổn định repo** (ngay) | Repo sạch, an toàn, kiểm tra xanh trước khi làm tiếp | TD-01..TD-07 | Không (chỉ cần người dùng thao tác) | — |
+| **1 — Chốt quyết định** (song song GĐ 0) | Gỡ chặn tích hợp Chương 1 | TD-08..TD-15 | Người dùng trả lời | Tuần đầu C1 (§6.3) |
+| **2 — Bộ chạy kịch bản (engine)** | Chạy được graph `chapter1.json` bằng JS thuần, test vàng khớp validator | TD-16..TD-18 (WP-C1, C2) | Q3 | Nền cho Tuần 6 |
+| **3 — Phase 1 chơi được** | Mở 201 lúc 21:35 → hành lang → hỏi Hòa/Linh/Hào/Minh → cảnh sát tới | TD-19..TD-21 (WP-C3) | Q3; ảnh NPC (dùng placeholder có nhãn nếu Q5 cho phép) | Simple Demo / Tuần 6 |
+| **4 — Phase 2–4 + Final** | Khám 204, Press/Present + Sổ tay state v2, Final Deduction, P4, Bad Ending, dừng CH2_ENTRY | TD-22..TD-27 (WP-C4..C7) | Q4; nền phòng 204 | **Tuần 6** (Notebook & Deduction) |
+| **5 — Lưu/tải thật** | Save = state v2, Load Game, autosave, offline, server | TD-28..TD-31 (WP-C8) | ISS-29, ISS-05, ISS-18 | REQ-030, REQ-064 |
+| **6 — Admin Dashboard** | 3 chỉ số §5.1 thao tác trên DB thật | TD-32..TD-35 | ISS-10, 11, 12 | **Tuần 8** |
+| **7 — Kiểm thử & hồ sơ GĐ1** | E2E §5.2 có biên bản, playtest 12 mục, đối chiếu REQ | TD-36..TD-40 | GĐ 4–6 | **Tuần 12** |
+| 8 — Capstone 2/3 | Ch2–5, Complex Deduction Trees, Flashback, bàn ráp chữ ký, BGM/SFX, Closed Beta | WP-17..WP-19 (PROJECT_MEMORY H2) | Nội dung + đặc tả mới | C2, C3 |
+
+Giai đoạn 2 **không cần asset** nên làm được ngay khi Q3 được chốt; giai đoạn 3 dùng lại phòng 201 + hành lang đã có.
+
+## 2a. Bảng việc cần làm (TODO)
+
+> **Bảng sống từ 03/11/2026: `docs/TODO.md`** (có thêm TD-46…TD-63, trạng thái và cột chốt thứ tự). Bảng dưới đây là bản chụp ngày 27/10, giữ để đối chiếu.
+
+Ưu tiên: **P0** chặn mọi thứ / rủi ro bảo mật · **P1** cần cho Capstone 1 · **P2** nên có · **P3** sau. Cỡ: S ≈ 1 phiên ngắn · M ≈ 2–3 phiên · L ≥ 4 phiên.
+"Ai": **Bạn** = người dùng/nhóm (quyết định, asset, nội dung, thao tác trên máy) · **AI** = Claude làm code/tài liệu sau khi được giao.
+
+### 2a.1 Giai đoạn 0 — Ổn định repo
+
+| # | Việc | Ai | Ưu tiên | Cỡ | Chặn bởi | Xong khi |
+|---|---|---|---|---|---|---|
+| TD-01 | Đổi mật khẩu MySQL `root` (đã lộ trong `b744ce7`), cập nhật biến môi trường `DB_PASSWORD` | Bạn | **P0** | S | — | Mật khẩu cũ hết hiệu lực |
+| TD-02 | Trả `application.yml` về `${DB_PASSWORD:}` (không giá trị mặc định), commit qua nhánh + PR | AI soạn / Bạn đẩy | **P0** | S | — | Không còn mật khẩu trong file đang theo dõi |
+| TD-03 | Chạy `cd frontend; npm run check` và `cd backend; mvn clean test` trên máy, gửi log lỗi (nếu có) | Bạn | **P0** | S | — | Cả hai xanh (AI sửa lỗi phát sinh) |
+| TD-04 | Sửa xuống dòng `frontend/index.html` (`npx prettier --write index.html`) | AI / Bạn | P1 | S | — | `format:check` không còn cảnh báo |
+| TD-05 | Xóa `package-lock.json` rỗng + `node_modules/` ở thư mục gốc; `git rm package-lock.json` | Bạn đồng ý → AI | P2 | S | Bạn đồng ý xóa | Gốc repo không còn file thừa |
+| TD-06 | Thống nhất phiên bản Node/npm cả nhóm để `package-lock.json` không đổi qua lại (đề xuất ghi trong README) | Bạn chốt | P2 | S | Bạn chốt phiên bản | `npm install` không làm đổi lock |
+| TD-07 | Quy trình git: mỗi việc một nhánh (`Nhan`…), PR vào `master`; không đẩy thẳng `master` | Nhóm | P1 | — | — | Lịch sử chỉ có merge PR |
+
+### 2a.2 Giai đoạn 1 — Quyết định cần chốt
+
+| # | Câu hỏi | Mở khóa | Ưu tiên | Ghi chú |
+|---|---|---|---|---|
+| TD-08 | **Q3** — Dùng Data Contract 2.0 + `chapter1.json` làm định dạng kịch bản chính thức (đóng ISS-07, bỏ định dạng tạm)? | GĐ 2–4 | **P0** | Nếu đồng ý thì ISS-06 (schema save = state v2), ISS-15 (−15/−20), ISS-16 (Final 8 ô) cũng được giải theo gói |
+| TD-09 | **Q4** — Văn bản Phase 2/3/Final/4 trong gói được đưa vào game nguyên văn? | GĐ 4 | **P0** | Chưa duyệt thì chỉ tích hợp Phase 1 |
+| TD-10 | **Q5** — Asset: gửi nền phòng 204 + sprite Linh/Hào/Minh/Cảnh sát + ảnh 12 vật chứng, hay cho phép placeholder có nhãn trong lúc chờ? | GĐ 3–4 | P1 | `main1–3.png` có phải chân dung thám tử không? |
+| TD-11 | **ISS-29** — Cách lấy `userId` khi login chỉ trả `{token,type,username,role}` (đụng API §4.3) | GĐ 5 | P1 | AI sẽ đề xuất các phương án theo mẫu khi tới bước này |
+| TD-12 | **ISS-05** — Mỗi user 1 bản lưu (ghi đè) hay nhiều bản (lịch sử/checkpoint)? | GĐ 5 | P1 | |
+| TD-13 | **ISS-10/11/12** — API admin, ROLE_ADMIN, định nghĩa "tài khoản hoạt động" & "% hoàn thành chương", công nghệ "thời gian thực" | GĐ 6 | P1 (trước Tuần 8) | |
+| TD-14 | **T-024** — A204 → phòng 204? cầu thang đi đâu? giấy khen đặt ở đâu? lưu vị trí phòng vào file lưu? điểm xem bảng Nội quy/Thông báo? | GĐ 3–5 | P1 | Lưu vị trí phòng = đổi dữ liệu lưu → cần duyệt |
+| TD-15 | Ngày bắt đầu Tuần 1 của Capstone 1 + ai trong nhóm nhận giai đoạn nào (TV1/TV2/TV3, §6.2) | Lịch | P2 | Để chia việc song song frontend/backend/admin |
+
+### 2a.3 Giai đoạn 2–4 — Tích hợp Chương 1 (chi tiết: `docs/chapter1/CHAPTER1_PLAN.md`)
+
+| # | Việc | WP | Ai | Ưu tiên | Cỡ | Chặn bởi | Xong khi |
+|---|---|---|---|---|---|---|---|
+| TD-16 | Nhập 5 file dữ liệu vào `public/assets/chapters/chapter1/` + kiểm SHA-256 theo MANIFEST + đưa validator vào repo | C1 | AI | P1 | S | TD-08 | Validator PASS trên bản trong repo |
+| TD-17 | Narrative engine thuần `game/narrative/` (expr, statePath, effects, storyRunner, crossExam, deduction, checkpoints, saveMigration) | C2 | AI | P1 | L | TD-08 | Test đơn vị từng module xanh |
+| TD-18 | Test vàng: port 2 lượt chơi trọn chương + ca chấm điểm của `validate_data.py` sang Vitest | C2 | AI | P1 | M | TD-17 | Kết quả từng bước khớp bản Python |
+| TD-19 | Bảng ánh xạ speaker/expression → sprite (`speakers.js`), DialogueBox 4 kiểu node, ChoiceMenu | C3 | AI | P1 | M | TD-17 | Hiển thị đúng dialogue/narration/action/ui + lựa chọn |
+| TD-20 | Nối phòng 201 + hành lang với node Phase 1 (bắt đầu 21:35, nhìn 204 từ bậu cửa, HUB hỏi NPC) | C3 | AI | P1 | M | TD-19, TD-14 | Chơi trọn Phase 1, đủ 4 lời khai, cảnh sát tới |
+| TD-21 | Placeholder có nhãn cho NPC chưa có ảnh (nếu Q5 cho phép) | C3/C9 | AI | P2 | S | TD-10 | Không lẫn placeholder vào bản nộp |
+| TD-22 | Phòng 204: dữ liệu phòng 2.5D + 9 hotspot + InspectModal; nút "Trở ra hỏi chuyện" khi đủ 5 core | C4 | AI (+ Bạn gửi nền) | P1 | L | TD-09, nền 204 | 5 core nhiều thứ tự → P3 |
+| TD-23 | Overlay đối chất Press/Present + PresentPicker; trừ −15 đúng một lần, blocked miễn phạt | C5 | AI | P1 | M | TD-17 | Double click không trừ 2 lần |
+| TD-24 | NotebookScene 4 tab đọc state v2 (nguồn, phase thu, revision, Unknown) | C5 | AI | P1 | M | TD-17 | Đúng 4 tab REQ-024, không hồi tố |
+| TD-25 | Final Deduction 8 ô + tái dựng RECON_01–06 | C6 | AI | P1 | M | TD-17, TD-09 | Thiếu 0 / sai −20 / đúng → P4 |
+| TD-26 | Phase 4 + fallback xu/khảo sát/giấy khen; Bad Ending → load checkpoint thật; title Chương 2 → dừng CH2_ENTRY | C7 | AI | P1 | M | TD-25 | Đi hết chương không crash |
+| TD-27 | Điền lời xem đồ vật `room201-inspect.json`, `hallway-inspect.json` | — | Bạn | P2 | S | — | Không còn "[Chờ nội dung]" |
+
+### 2a.4 Giai đoạn 5 — Lưu/tải
+
+| # | Việc | Ai | Ưu tiên | Cỡ | Chặn bởi | Xong khi |
+|---|---|---|---|---|---|---|
+| TD-28 | Save = snapshot state v2 vào localStorage + `POST /api/game/save` (`saveDataJson`) | AI | P1 | M | TD-17, TD-11 | JSON lưu/tải không cắt cụt (§5.2) |
+| TD-29 | "Tiếp tục điều tra" tải thật, resume đúng node (không phát lại effect) | AI | P1 | M | TD-28, TD-12 | Tải ở REPORT/RECOVER/RECON đúng |
+| TD-30 | Autosave 5 phút + sự kiện (collect_evidence, save_checkpoint) — DEC-010 | AI | P1 | S | TD-28 | Có test |
+| TD-31 | Hybrid Storage/offline (REQ-064): mất mạng không crash, đồng bộ lại | AI | P2 | M | ISS-18 | Rút mạng vẫn chơi, không mất tiến trình |
+
+### 2a.5 Giai đoạn 6 — Admin Dashboard (Tuần 8)
+
+| # | Việc | Ai | Ưu tiên | Cỡ | Chặn bởi | Xong khi |
+|---|---|---|---|---|---|---|
+| TD-32 | API Contract admin (văn bản) + ROLE_ADMIN | AI soạn / Bạn duyệt | P1 | S | TD-13 | Được duyệt |
+| TD-33 | Backend: thống kê tài khoản hoạt động, % hoàn thành Ch1–5, danh sách bug, PENDING → RESOLVED | AI (TV2) | P1 | M | TD-32 | Test controller/service |
+| TD-34 | Frontend Admin (Tailwind): 3 khối §5.1 + biểu đồ (thư viện cần chốt — ISS-28) | AI (TV3) | P1 | M | TD-33 | Thao tác thật trên DB |
+| TD-35 | Seed `evidence_master` 12 dòng Ch1 từ `evidence.json` (WP-H) | AI | P3 | S | TD-16 | Đúng schema §2.1 |
+
+### 2a.6 Giai đoạn 7 — Kiểm thử & hồ sơ
+
+| # | Việc | Ai | Ưu tiên | Cỡ | Chặn bởi | Xong khi |
+|---|---|---|---|---|---|---|
+| TD-36 | Playwright tự đi 2 lượt chơi Chương 1 trong trình duyệt | AI | P1 | M | GĐ 4 | Chạy xanh |
+| TD-37 | E2E §5.2: lưu → JWT → MySQL → kiểm JSON → Admin thấy số liệu; biên bản có log thật | AI + Bạn | P1 | M | GĐ 5–6 | Biên bản ký |
+| TD-38 | Playtest tay 12 mục `PLAYTEST_CHECKLIST.md` + font tiếng Việt + kích thước hộp thoại | Bạn | P1 | M | GĐ 4 | Checklist đủ |
+| TD-39 | Cập nhật trạng thái REQ trong PROJECT_MEMORY mục C (nhiều dòng còn ghi trạng thái từ 08/10) + bảng đối chiếu REQ ↔ code ↔ test | AI | P2 | M | — | Bảng đối chiếu cho hồ sơ |
+| TD-40 | Thêm test backend (Auth/GameProgress/BugReport controller + repository) | AI | P2 | M | — | `mvn test` có test cho 5 endpoint §4.3 |
+
+### 2a.7 Việc nhỏ / chờ asset (làm khi có)
+
+| # | Việc | Ai | Ưu tiên | Chặn bởi |
+|---|---|---|---|---|
+| TD-41 | Ảnh đi lên/xuống của thám tử → bỏ "nhún" tạm (Q-R5) | Bạn gửi → AI | P2 | Asset |
+| TD-42 | WC trong phòng 201 (Q-R7), intro trước phòng 201 | Bạn gửi → AI | P2 | Nội dung |
+| TD-43 | Thêm font Playfair Display + Be Vietnam Pro (OFL) vào `public/assets/fonts/` | Bạn | P2 | — |
+| TD-44 | BGM/SFX (mưa, gõ cửa, bước chân…) nối với âm lượng trong Cài đặt | Bạn gửi → AI | P3 | Asset |
+| TD-45 | Quyết định dùng/bỏ `characters/main1–3.png` (5,2 MB nằm trong bản build) | Bạn | P3 | TD-10 |
+
+## 2b. Rủi ro chính
+
+| Rủi ro | Mức | Cách phòng |
+|---|---|---|
+| Q3/Q4 chưa chốt → GĐ 2–4 đứng, dồn việc sát Tuần 6 | Cao | Chốt TD-08/TD-09 trước; engine (TD-17) không cần asset nên làm ngay sau Q3 |
+| Code T-020 → T-024 chưa qua `npm run check` thật → lỗi tích lũy | Cao | TD-03 trước mọi việc code mới |
+| Mật khẩu trong lịch sử git | Cao | TD-01 (đổi mật khẩu là đủ; xóa khỏi lịch sử chỉ khi nhóm muốn — viết lại lịch sử ảnh hưởng cả nhóm) |
+| Engine hiểu sai hợp đồng (thứ tự route, trừ điểm 2 lần, phát lại effect khi tải) | Cao | Test vàng TD-18, event token + `committed_events` |
+| Thiếu nền phòng 204 / sprite NPC | TB | Placeholder có nhãn (nếu Q5 cho phép), đo hotspot lại khi có ảnh |
+| `package-lock.json` đổi qua lại giữa máy các thành viên | TB | TD-06 |
+
+---
+
+## 3. (Lịch sử — đã xong T-020, DEC-012) Menu chính & Cài đặt
 
 ### 3.1 Mục đích
 - Menu chính có "gu", hợp không khí trinh thám noir của khu trọ Chương 1; ít nút, dễ hiểu, không rối. [YÊU CẦU 20/10]

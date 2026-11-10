@@ -5,7 +5,7 @@ spring:
   datasource:
     url: ${DB_URL:jdbc:mysql://localhost:3306/detective_game?createDatabaseIfNotExist=true&serverTimezone=UTC}
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:123456}
+    password: ${DB_PASSWORD:} # KHÔNG ghi mật khẩu vào file — đặt biến môi trường DB_PASSWORD (TD-02)
   jpa:
     hibernate:
       # Schema do db/schema.sql (Project.docx §2.1) quản lý.

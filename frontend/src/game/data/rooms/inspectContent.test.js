@@ -19,9 +19,10 @@ describe('inspectContent — lời khi xem đồ vật', () => {
 
   it('file nội dung của mỗi phòng là JSON hợp lệ, đủ khóa cho mọi đồ vật xem được, không thừa khóa', () => {
     for (const room of Object.values(ROOMS)) {
+      const ids = room.hotspots.filter((h) => h.action === 'inspect').map((h) => h.id)
+      if (!ids.length && !room.inspectContent) continue // phòng 204 đọc lời xem đồ từ graph
       expect([room.id, Boolean(room.inspectContent)]).toEqual([room.id, true])
       const content = JSON.parse(readFileSync(publicFile(room.inspectContent.url), 'utf8'))
-      const ids = room.hotspots.filter((h) => h.action === 'inspect').map((h) => h.id)
       for (const id of ids) expect([id, Array.isArray(content[id])]).toEqual([id, true])
       const unknown = Object.keys(content).filter((k) => !k.startsWith('_') && !ids.includes(k))
       expect([room.id, unknown]).toEqual([room.id, []])

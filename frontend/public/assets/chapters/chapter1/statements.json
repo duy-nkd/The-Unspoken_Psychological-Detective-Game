@@ -1,0 +1,264 @@
+{
+  "id": "CH1_STATEMENT_DATABASE",
+  "records": [
+    {
+      "id": "ST_P1_HOA_INITIAL",
+      "text": "Chỉ lên một lần 21:30, chưa vào",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_HOA_CALLS",
+      "text": "Nói đã gọi cảnh sát/Minh",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_HOA_DOOR",
+      "text": "Nói gọi/nhìn từ cửa",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_LINH_INITIAL",
+      "text": "Ngủ từ khoảng tám giờ, không biết/hear gì",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_LINH_TIME",
+      "text": "Giờ ngủ ước lượng",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_HAO_INITIAL",
+      "text": "Qua 204 thu nợ 203",
+      "speaker": "HAO",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_HAO_TIME",
+      "text": "Tới khoảng 21:20",
+      "speaker": "HAO",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_HAO_STANDING",
+      "text": "Đang hút thuốc",
+      "speaker": "HAO",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_MINH_INITIAL",
+      "text": "Tới 20:45, rời trước 21:00, Tùng bình thường",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_MINH_TOPIC",
+      "text": "Chuyện cá nhân/tán gẫu",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P1_MINH_WASH",
+      "text": "Tùng bảo đi rửa mặt trước khi Minh rời",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HOA_REPEAT",
+      "text": "Vẫn khẳng định chỉ lên 21:30/chưa vào",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HOA_RECEIPT_DEFENSE",
+      "text": "Có thể viết giấy, phủ nhận đã vào để đặt",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HOA_ENTRY",
+      "text": "Nhận vào khoảng giờ ghi 20:55, lấy tiền/để giấy; không thấy Tùng ở khu bàn",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HOA_EXCESS",
+      "text": "Lấy hơn khoản nợ; giấy chỉ ghi nợ",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HOA_SAW_MINH",
+      "text": "Thấy Minh xuống trước lần mình vào",
+      "speaker": "HOA",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_LINH_REPEAT",
+      "text": "Không rời phòng trước được gọi",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_LINH_WATCH_DEFENSE",
+      "text": "Đồng hồ trên tay là của cô",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_LINH_THEFT",
+      "text": "Nhận vào 204, lấy đồng hồ từ tủ khoảng 21:05",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_LINH_DISTRESS",
+      "text": "Thấy Tùng gục/cào cổ, còn sống; không xác nhận thấy dùng ống",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_LINH_FLED",
+      "text": "Tưởng hen như thường, sợ lộ trộm nên bỏ chạy",
+      "speaker": "LINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HAO_VISIT",
+      "text": "Khoảng 21:20 thu nợ 203, đứng hút thuốc đoạn gần 204 sau đó",
+      "speaker": "HAO",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_HAO_EMPLOYER",
+      "text": "Từ chối nêu người thuê",
+      "speaker": "HAO",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_203_CORROB",
+      "text": "Cảnh sát truyền kết quả người 203 xác nhận lượt Hào tới thu nợ khoảng 21:20",
+      "speaker": "POLICE",
+      "status": "corroborated_visit"
+    },
+    {
+      "id": "ST_P3_MINH_VISIT_DETAIL",
+      "text": "Nhớ đến khoảng 20:45, rời trước 21:00; không nhìn giờ rời",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_WASH_SCOPE",
+      "text": "Tùng rửa mặt sau vách, Minh còn ở bàn một lúc rồi đi",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_MEDICINE",
+      "text": "Nhận ra ống hít; nói Tùng có hen, có thể do thời tiết",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_BOX_UNKNOWN",
+      "text": "Nói không biết ai bóc hộp, khi nào",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_NO_HANDLING",
+      "text": "Phủ nhận đã cầm ống hoặc xử lý hộp trong lượt gặp",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_OPPORTUNITY",
+      "text": "Nhận có lúc ở khu bàn khi Tùng sau vách; nói người khác cũng có thể vào",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_PARTIAL",
+      "text": "Nhận mở hộp/đặt ống mới, lấy ống cũ; biện hộ giúp thay thuốc",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_OLD_LOCATION",
+      "text": "Chỉ hốc khuất chân cầu thang tầng trệt giấu ống cũ",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_POLICE_OLD_RECORD",
+      "text": "Cảnh sát tìm đúng nơi; nhãn cá nhân khớp hồ sơ thuốc Tùng",
+      "speaker": "POLICE",
+      "status": "professional_record"
+    },
+    {
+      "id": "ST_P3_MINH_NORMAL_REPLACEMENT",
+      "text": "Đổi một ống thuốc bình thường, không làm hại",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_ACT",
+      "text": "Nhận lấy ống cũ/đặt ống được giao khi Tùng rửa mặt, trước rời/Hòa vào",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_COERCION",
+      "text": "Nhận bị người khác ép; không chốt tên người ép ở đây",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_MINH_IGNORANCE",
+      "text": "Nói không biết sẽ chết; không xác minh niềm tin đó",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P3_REPORT_SCOPE",
+      "text": "Cảnh sát xác nhận báo cáo có phần liên hệ nạn nhân, không chỉ chất trong ống",
+      "speaker": "POLICE",
+      "status": "professional_record"
+    },
+    {
+      "id": "ST_P4_MINH_DEBT",
+      "text": "Minh khai mắc nợ phía đã ép anh tác động vào ống; chưa xác minh khoản nợ hoặc danh tính người ép.",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P4_MINH_HOSTAGE",
+      "text": "Minh khai con gái bị phía ép anh giữ làm sức ép. Nơi giữ, danh tính người giữ và tình trạng hiện tại chưa được xác minh.",
+      "speaker": "MINH",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P4_HAO_COIN_TYPE",
+      "text": "Hào nhận loại xu là thẻ nhận diện người làm khảo sát trong mạng lưới thu nợ; chưa xác nhận người cấp cho Tùng hoặc lãnh đạo.",
+      "speaker": "HAO",
+      "status": "claimed"
+    },
+    {
+      "id": "ST_P4_LINH_SURVEY_ACCOUNT",
+      "text": "Linh thuật lời Tùng: khảo sát dưới danh tiện ích chuyển thông tin người nợ/dễ bị ép ký giấy; công được trừ vào nợ.",
+      "speaker": "LINH",
+      "status": "claimed_indirect"
+    },
+    {
+      "id": "ST_P4_LINH_WARNING",
+      "text": "Linh nói Tùng đã dặn cô đừng ký giấy chưa rõ mục đích trước vụ án; chưa ngày/phút.",
+      "speaker": "LINH",
+      "status": "claimed_indirect"
+    }
+  ],
+  "policy": "catalogue only; commit at source node; preserve first source and revision history"
+}

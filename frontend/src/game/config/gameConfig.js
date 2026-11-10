@@ -8,6 +8,7 @@ import { NotebookScene } from '../scenes/NotebookScene'
 import { PreloadScene } from '../scenes/PreloadScene'
 import { RoomInvestigationScene } from '../scenes/RoomInvestigationScene'
 import { SettingsScene } from '../scenes/SettingsScene'
+import { StoryScene } from '../scenes/StoryScene'
 import { DebugScene } from '../debug/DebugScene'
 import { COLORS } from '../ui/theme'
 
@@ -35,6 +36,7 @@ export function createGameConfig(parent) {
       MainMenuScene,
       SettingsScene,
       DialogueScene,
+      StoryScene,
       RoomInvestigationScene,
       NotebookScene,
       DeductionScene,

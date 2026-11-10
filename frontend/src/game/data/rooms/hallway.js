@@ -66,6 +66,7 @@ export const HALLWAY = Object.freeze({
   spawn: Object.freeze({ x: 200, y: 605, face: 'right' }),
   entrances: Object.freeze({
     room201: Object.freeze({ x: 200, y: 605, face: 'right' }),
+    room204: Object.freeze({ x: 629, y: 460, face: 'down' }),
   }),
   // TẠM: chân tường sau y 446 -> cao 222 px; mép dưới y 624 -> 330 px (cùng cỡ gần nhất phòng 201)
   depth: Object.freeze({ nearY: 624, nearHeight: 330, farY: 446, farHeight: 222 }),

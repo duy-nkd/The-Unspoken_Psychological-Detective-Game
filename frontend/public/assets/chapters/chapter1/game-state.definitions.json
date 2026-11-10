@@ -1,0 +1,203 @@
+{
+  "id": "CH1_STATE",
+  "saveSchemaVersion": 2,
+  "initialState": {
+    "schema_version": 2,
+    "chapter": 1,
+    "current_phase": 1,
+    "current_node": "P1_001",
+    "credibility": 100,
+    "phase3_segment": null,
+    "scene_location": "room201",
+    "evidence_collected": [],
+    "evidence_records": {},
+    "statements": {},
+    "observations": {},
+    "timeline": {},
+    "people": {},
+    "case_conclusions": {},
+    "flags": {
+      "analysis_received": false,
+      "chapter1_complete": false,
+      "chapter2_unlocked": false,
+      "coin_function_statement_recorded": false,
+      "coin_memory_recognized": false,
+      "coin_photo_opened": false,
+      "corrob203_received": false,
+      "corrob203_requested": false,
+      "deduction_solved": false,
+      "deduction_unlocked": false,
+      "final_notebook_updated": false,
+      "hao_conversation_closed": false,
+      "hao_employer_asked": false,
+      "hao_initial": false,
+      "hao_name_known": false,
+      "hao_position_asked": false,
+      "hao_position_clarified": false,
+      "hao_resolved": false,
+      "hao_time_asked": false,
+      "hao_visit_clarified": false,
+      "hoa_access_discussed": false,
+      "hoa_aftermath_seen": false,
+      "hoa_calls_asked": false,
+      "hoa_conversation_closed": false,
+      "hoa_door_asked": false,
+      "hoa_entry_admitted": false,
+      "hoa_first_press": false,
+      "hoa_initial": false,
+      "hoa_resolved": false,
+      "hoa_scope_clarified": false,
+      "hoa_sequence_clarified": false,
+      "hp_bed_recorded": false,
+      "hp_dust_recorded": false,
+      "hp_inhaler_recorded": false,
+      "hp_lock_recorded": false,
+      "hp_neck_recorded": false,
+      "hp_receipt_recorded": false,
+      "hp_sink_recorded": false,
+      "hp_trash_recorded": false,
+      "inspect_permission": false,
+      "interview_round_complete": false,
+      "investigation_available_in_phase2": false,
+      "linh_conversation_closed": false,
+      "linh_first_press": false,
+      "linh_initial": false,
+      "linh_reassured": false,
+      "linh_resolved": false,
+      "linh_theft_admitted": false,
+      "linh_time_asked": false,
+      "linh_watch_visible": false,
+      "linh_witness_recorded": false,
+      "minh_act_admitted": false,
+      "minh_arrived": false,
+      "minh_coercion_admitted": false,
+      "minh_conversation_closed": false,
+      "minh_debt_detail_recorded": false,
+      "minh_hostage_detail_recorded": false,
+      "minh_inhaler_discussed": false,
+      "minh_initial": false,
+      "minh_partial_admitted": false,
+      "minh_r1_done": false,
+      "minh_r2_done": false,
+      "minh_r3_done": false,
+      "minh_resolution_recorded": false,
+      "minh_topic_asked": false,
+      "minh_wash_asked": false,
+      "notebook_unlocked": false,
+      "observed_time_2135": false,
+      "old_account_corrob": false,
+      "old_inhaler_recovered": false,
+      "old_location_disclosed": false,
+      "old_recovery_requested": false,
+      "opening_seen": false,
+      "opportunity_reviewed": false,
+      "p1_hub_seen": false,
+      "p2_room_seen": false,
+      "packaging_check_done": false,
+      "phase1_complete": false,
+      "phase2_complete": false,
+      "phase2_unlocked": false,
+      "phase3_complete": false,
+      "phase3_dialogue_complete": false,
+      "phase3_unlocked": false,
+      "phase4_complete": false,
+      "phase4_unlocked": false,
+      "police_arrived": false,
+      "present_unlocked": false,
+      "press_unlocked": false,
+      "r4_hao_checked": false,
+      "r4_hoa_checked": false,
+      "r4_linh_checked": false,
+      "reconstruction_complete": false,
+      "room204_entered": false,
+      "samples_submitted": false,
+      "scene_revisit_available": false,
+      "scene_secured": false,
+      "survey_seen": false,
+      "time_skip_complete": false,
+      "time_skip_started": false,
+      "tung_survey_account_recorded": false,
+      "tung_warning_recorded": false,
+      "victim_link_confirmed": false,
+      "victim_seen_from_door": false
+    },
+    "checkpoints": {},
+    "deduction": {
+      "chapter_id": 1,
+      "draft": {
+        "who": null,
+        "what": null,
+        "when": null,
+        "why": null,
+        "evidence": {
+          "ED_CONTACT": null,
+          "ED_REMOVAL": null,
+          "ED_CONTENT": null,
+          "ED_ACCOUNT": null
+        }
+      },
+      "attempt_count": 0,
+      "result": null,
+      "reconstruction_node": null
+    },
+    "committed_events": []
+  },
+  "flagAbsentMeans": false,
+  "checkpointIds": [
+    "ch1_phase3_start",
+    "ch1_pre_final"
+  ],
+  "sourceMetadataRequired": [
+    "source_node",
+    "collected_phase",
+    "source_kind"
+  ],
+  "upsertPolicy": "create once with source metadata; subsequent read must not change original source; merge creates revision history",
+  "readOnlyCatalogueFiles": [
+    "evidence.json",
+    "statements.json",
+    "people.json"
+  ],
+  "penalties": {
+    "wrongPresent": 15,
+    "wrongCompleteFinal": 20,
+    "press": 0,
+    "correctPresent": 0,
+    "phase4": 0
+  },
+  "technicalBindings": {
+    "people": {
+      "hoa": {
+        "stateRecordId": "PEO_HOA",
+        "statePath": "/people/PEO_HOA"
+      },
+      "linh": {
+        "stateRecordId": "PEO_LINH",
+        "statePath": "/people/PEO_LINH"
+      },
+      "hao": {
+        "stateRecordId": "PEO_HAO",
+        "statePath": "/people/PEO_HAO"
+      },
+      "minh": {
+        "stateRecordId": "PEO_MINH",
+        "statePath": "/people/PEO_MINH"
+      }
+    },
+    "checkpoints": {
+      "preFinal": {
+        "storageKey": "ch1_pre_final",
+        "statePath": "/checkpoints/ch1_pre_final"
+      },
+      "phase3Start": {
+        "storageKey": "ch1_phase3_start",
+        "statePath": "/checkpoints/ch1_phase3_start"
+      }
+    },
+    "notebook": {
+      "finalUpdate": {
+        "handlerId": "commit_ch1_final_notebook"
+      }
+    }
+  }
+}

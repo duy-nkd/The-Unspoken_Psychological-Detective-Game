@@ -16,8 +16,9 @@ const LAYOUT = Object.freeze({
  * Không chứa logic câu thoại — DialogueBox gọi show/startTalking/syncMouth/stopTalking.
  */
 export class CharacterStage {
-  constructor(scene) {
+  constructor(scene, { closeMouthAtPunctuation = false } = {}) {
     this.scene = scene
+    this.closeMouthAtPunctuation = closeMouthAtPunctuation
     this.sprite = scene.add
       .sprite(0, scene.scale.height, '__DEFAULT')
       .setOrigin(0.5, 1)
@@ -91,7 +92,9 @@ export class CharacterStage {
     const anims = this.sprite.anims
     if (!anims?.currentAnim) return
     if (shouldPauseMouth(char)) {
-      if (anims.isPlaying) anims.pause()
+      if (anims.isPlaying) {
+        anims.pause(this.closeMouthAtPunctuation ? anims.currentAnim.frames[0] : undefined)
+      }
     } else if (anims.isPaused) {
       anims.resume()
     }

@@ -7,8 +7,8 @@ import { persistProgress, readLocalBackup } from '../services/saveService'
 const log = createLogger('GameBridge')
 
 /** Báo Phaser: trình duyệt có bản lưu không (MainMenu mờ "Tiếp tục điều tra" / hỏi trước khi ghi đè). */
-function announceSaveAvailability() {
-  EventBus.emit(GAME_EVENTS.SAVE_AVAILABILITY, { hasSave: readLocalBackup() !== null })
+function announceSaveAvailability(username) {
+  EventBus.emit(GAME_EVENTS.SAVE_AVAILABILITY, { hasSave: readLocalBackup(username) !== null })
 }
 
 /**
@@ -18,14 +18,14 @@ function announceSaveAvailability() {
  * (useLayoutEffect của PhaserGame chạy trước useEffect này) nên runtime đã nghe sẵn.
  * @param {{ userId?: number|null }} options
  */
-export function useGameBridge({ userId = null } = {}) {
+export function useGameBridge({ userId = null, username } = {}) {
   const [statusMessage, setStatusMessage] = useState('')
 
   useEffect(() => {
     const onSaveRequested = async ({ reason, snapshot }) => {
       try {
-        const result = await persistProgress(snapshot, { userId, reason })
-        announceSaveAvailability()
+        const result = await persistProgress(snapshot, { userId, username, reason })
+        announceSaveAvailability(username)
         // Báo kết quả cho Sổ tay trong game (DEC-013: nút Lưu nằm trong Sổ tay)
         EventBus.emit(GAME_EVENTS.SAVE_RESULT, { ok: true, remote: result.remote })
         setStatusMessage(
@@ -39,12 +39,15 @@ export function useGameBridge({ userId = null } = {}) {
         setStatusMessage(`Lưu thất bại: ${error.message}`)
       }
     }
-    // PENDING(ISS-05, ISS-29): luồng Load Game / tải checkpoint chưa đủ đặc tả
-    const onLoadRequested = () => setStatusMessage('Load Game: chờ đặc tả API (ISS-05, ISS-29).')
+    // PENDING(ISS-05, ISS-29): tải bản lưu server.
+    const onLoadRequested = () => {
+      const snapshot = readLocalBackup(username)
+      if (snapshot) EventBus.emit(GAME_EVENTS.LOAD_RESULT, snapshot)
+    }
     const onCheckpointReload = () =>
       setStatusMessage('Tải checkpoint: chờ định nghĩa checkpoint (ISS-05).')
 
-    announceSaveAvailability()
+    announceSaveAvailability(username)
     EventBus.on(GAME_EVENTS.SAVE_REQUESTED, onSaveRequested)
     EventBus.on(GAME_EVENTS.LOAD_REQUESTED, onLoadRequested)
     EventBus.on(GAME_EVENTS.CHECKPOINT_RELOAD_REQUESTED, onCheckpointReload)
@@ -53,7 +56,7 @@ export function useGameBridge({ userId = null } = {}) {
       EventBus.off(GAME_EVENTS.LOAD_REQUESTED, onLoadRequested)
       EventBus.off(GAME_EVENTS.CHECKPOINT_RELOAD_REQUESTED, onCheckpointReload)
     }
-  }, [userId])
+  }, [userId, username])
 
   return { statusMessage }
 }

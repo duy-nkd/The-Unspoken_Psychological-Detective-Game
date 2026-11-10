@@ -1,0 +1,30 @@
+{
+  "records": [
+    {
+      "id": "PEO_HOA",
+      "name": "Hòa",
+      "role": "Chủ trọ"
+    },
+    {
+      "id": "PEO_LINH",
+      "name": "Linh",
+      "role": "Hàng xóm phòng 205"
+    },
+    {
+      "id": "PEO_HAO",
+      "name": "Hào",
+      "role": "Đến thu nợ theo lời khai"
+    },
+    {
+      "id": "PEO_MINH",
+      "name": "Minh",
+      "role": "Bạn thân Tùng"
+    },
+    {
+      "id": "PEO_TUNG",
+      "name": "Tùng",
+      "role": "Người trọ phòng 204"
+    }
+  ],
+  "policy": "catalogue only; create from first encounter; never import author-only secrets into player knowledge"
+}

@@ -128,6 +128,24 @@ npm run dev                    # http://localhost:5173
 ```
 Lệnh khác: `npm run lint` · `npm run format` · `npm test` · `npm run build` · `npm run check` (chạy tất cả).
 
+## Dữ liệu kịch bản Chương 1 (Data Contract 2.0)
+Game đọc 5 file trong `frontend/public/assets/chapters/chapter1/` (chép từ gói `docs/sources/chapter1/data/` — bản gốc, không sửa).
+Sửa lời thoại / điều kiện ở bản trong `frontend/public/...`, rồi kiểm tra lại:
+```powershell
+python scripts/chapter1/validate.py            # chạy bộ kiểm tra của gói (mô phỏng 2 lượt chơi trọn chương) trên dữ liệu game
+python scripts/chapter1/validate.py --source   # chạy trên bản gốc để đối chiếu
+cd frontend; npm test                          # test cấu trúc nhanh (src/game/data/chapters.test.js)
+```
+Script chạy trên bản sao tạm, không ghi gì vào repo. Dòng cuối cho biết dữ liệu game còn giống bản gốc hay đã khác
+(khác là bình thường khi nhóm đã sửa). Bộ kiểm tra bắt lỗi cấu trúc và luật chơi (nút trỏ sai, vật chứng/lời khai không
+có, chơi trọn chương không tới được `CH2_ENTRY`…); nó KHÔNG so nội dung lời thoại trong game với kịch bản gốc.
+
+### Kiểm thử Chương 1 trên trình duyệt
+
+Chạy `npm run test:e2e` trong `frontend` khi máy đã có Google Chrome. Playwright tự mở Vite ở cổng 5196 và dùng phiên thử
+riêng để chơi bằng chuột và bàn phím. Hai lượt kiểm tra nguồn thu sớm và nguồn qua hồ sơ ở Phase 4, gồm lưu/tải cục bộ
+và khôi phục checkpoint. Ảnh lỗi nằm trong `frontend/node_modules/.cache/playwright-results/`.
+
 ## Khởi tạo CSDL (một lần)
 Schema là SQL nguyên văn trong `backend/src/main/resources/db/schema.sql`. Backend chạy `ddl-auto=validate` nên **bảng phải tồn tại và khớp schema**.
 ```powershell

@@ -1,0 +1,104 @@
+{
+  "version": "6c",
+  "method": "hybrid V5 cutout rig + twelve independently painted lower-body keys",
+  "frameWidth": 448,
+  "frameHeight": 720,
+  "groundPlaneY": 660,
+  "origin": {
+    "x": 0.5,
+    "y": 0.916667
+  },
+  "referenceCharacterHeight": 560,
+  "referenceHeight": 330,
+  "displayScale": 0.5892857142857143,
+  "speedHorizontal": 220,
+  "speedVertical": 88,
+  "cycleSeconds": 1,
+  "stepsPerCycle": 2,
+  "directions": [
+    {
+      "id": "left",
+      "sheet": "walk_left.png",
+      "idle": "idle_left.png",
+      "frameCount": 24,
+      "frameRate": 24,
+      "columns": 6,
+      "rows": 4,
+      "start": 0,
+      "end": 23,
+      "fullBodyMirrored": false,
+      "lowerBodySecondStepMirrored": false,
+      "speed": 220,
+      "groundTest": "ground_test_left_220pps.gif",
+      "comparison": "comparisons/V5_vs_V6b_left.gif"
+    },
+    {
+      "id": "right",
+      "sheet": "walk_right.png",
+      "idle": "idle_right.png",
+      "frameCount": 24,
+      "frameRate": 24,
+      "columns": 6,
+      "rows": 4,
+      "start": 0,
+      "end": 23,
+      "fullBodyMirrored": false,
+      "lowerBodySecondStepMirrored": false,
+      "speed": 220,
+      "groundTest": "ground_test_right_220pps.gif",
+      "comparison": "comparisons/V5_vs_V6b_right.gif"
+    },
+    {
+      "id": "up",
+      "sheet": "walk_up.png",
+      "idle": "idle_up.png",
+      "frameCount": 12,
+      "frameRate": 12,
+      "columns": 4,
+      "rows": 3,
+      "start": 0,
+      "end": 11,
+      "fullBodyMirrored": false,
+      "lowerBodySecondStepMirrored": true,
+      "speed": 88,
+      "groundTest": "ground_test_up_88pps.gif",
+      "comparison": "comparisons/V5_vs_V6b_up.gif"
+    },
+    {
+      "id": "down",
+      "sheet": "walk_down.png",
+      "idle": "idle_down.png",
+      "frameCount": 12,
+      "frameRate": 12,
+      "columns": 4,
+      "rows": 3,
+      "start": 0,
+      "end": 11,
+      "fullBodyMirrored": false,
+      "lowerBodySecondStepMirrored": true,
+      "speed": 88,
+      "groundTest": "ground_test_down_88pps.gif",
+      "comparison": "comparisons/V5_vs_V6b_down.gif"
+    }
+  ],
+  "repeat": -1,
+  "frameOrder": "row-major",
+  "upperBodyVerticalOffsetsRelativeK3": {
+    "up": [
+      16,
+      12,
+      4,
+      0,
+      4,
+      12
+    ],
+    "down": [
+      16,
+      12,
+      4,
+      0,
+      4,
+      12
+    ]
+  }
+}

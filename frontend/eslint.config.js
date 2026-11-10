@@ -25,7 +25,7 @@ export default defineConfig([
   },
   {
     // File cấu hình + test chạy trên Node
-    files: ['*.config.js', 'src/**/*.test.js'],
+    files: ['*.config.js', 'src/**/*.test.js', 'e2e/**/*.spec.js'],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
   {

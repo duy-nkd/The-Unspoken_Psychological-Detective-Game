@@ -3,7 +3,9 @@ import { GAME_EVENTS } from '../constants/gameEvents'
 import { FIRST_CHAPTER } from '../constants/gameplay'
 import { SCENE_KEYS } from '../constants/sceneKeys'
 import { EventBus } from '../core/EventBus'
+import { GameSession } from '../core/GameSession'
 import { getRuntime } from '../core/runtime'
+import { CHAPTER_DATA } from '../data/chapters'
 import { FIRST_ROOM_ID } from '../data/rooms'
 import { ensureValidSelection, stepSelection } from '../systems/menuNavigation'
 import { ConfirmDialog } from '../ui/ConfirmDialog'
@@ -94,11 +96,14 @@ export class MainMenuScene extends Phaser.Scene {
     // React báo có/không bản lưu (vd vừa lưu xong) trong lúc menu đang mở
     const onAvailability = () => this.refreshAvailability()
     EventBus.on(GAME_EVENTS.SAVE_AVAILABILITY, onAvailability)
+    const onLoad = (snapshot) => this.startSavedGame(snapshot)
+    EventBus.on(GAME_EVENTS.LOAD_RESULT, onLoad)
     // Cài đặt đóng bằng nút Lưu -> vẽ lại menu theo ngôn ngữ / trạng thái tiếng mới
     const onSettingsChanged = () => this.scene.restart()
     EventBus.on(GAME_EVENTS.SETTINGS_CHANGED, onSettingsChanged)
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       EventBus.off(GAME_EVENTS.SAVE_AVAILABILITY, onAvailability)
+      EventBus.off(GAME_EVENTS.LOAD_RESULT, onLoad)
       EventBus.off(GAME_EVENTS.SETTINGS_CHANGED, onSettingsChanged)
     })
   }
@@ -213,10 +218,45 @@ export class MainMenuScene extends Phaser.Scene {
    * PENDING: chèn cảnh intro trước phòng 201 khi có nội dung.
    */
   startNewGame() {
-    this.runtime.startNewGame()
+    this.runtime.startNewGame(this.initialStoryState())
     this.scene.start(SCENE_KEYS.ROOM_INVESTIGATION, {
       chapter: FIRST_CHAPTER,
       roomId: FIRST_ROOM_ID,
     })
+  }
+
+  initialStoryState() {
+    const key = CHAPTER_DATA[FIRST_CHAPTER].files.state.key
+    return this.cache.json.get(key).initialState
+  }
+
+  startSavedGame(snapshot) {
+    let session
+    try {
+      session = GameSession.fromSaveSnapshot(snapshot)
+    } catch {
+      this.dialog = new ConfirmDialog(this, {
+        title: this.runtime.t('story.loadError'),
+        body: this.runtime.t('story.loadErrorBody'),
+        confirmLabel: this.runtime.t('story.back'),
+        cancelLabel: this.runtime.t('confirm.cancel'),
+        onConfirm: () => {
+          this.dialog = null
+        },
+        onCancel: () => {
+          this.dialog = null
+        },
+      })
+      return
+    }
+    this.runtime.startSession(session, this.initialStoryState())
+    if (session.tutorial.status === 'active') {
+      this.scene.start(SCENE_KEYS.ROOM_INVESTIGATION, {
+        chapter: FIRST_CHAPTER,
+        roomId: FIRST_ROOM_ID,
+      })
+    } else {
+      this.scene.start(SCENE_KEYS.STORY, {})
+    }
   }
 }

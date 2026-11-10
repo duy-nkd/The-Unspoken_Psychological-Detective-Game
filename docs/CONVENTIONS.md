@@ -62,10 +62,15 @@ Mục tiêu: ai mở file nào cũng đoán được nó làm gì, lỗi xảy r
 | Entity lệch bảng | Backend báo lỗi ngay khi khởi động (`ddl-auto=validate`) — so với `db/schema.sql` |
 
 ## 6. Trước khi commit
+
 ```powershell
 cd frontend; npm run check      # lint + format:check + test + build
+npm run test:e2e                # khi sửa luồng chơi Chương 1, cần Google Chrome
 cd ../backend; mvn test
 ```
+
+Các ca Playwright ở `frontend/e2e/` đọc trạng thái Phaser để định vị đối tượng trên canvas. Hành động người chơi đi qua
+chuột và bàn phím của Playwright.
 
 ## 7. Git
 - Nhánh: `main` (ổn định) · `feature/<mô-tả>` · `fix/<mô-tả>`.

@@ -209,6 +209,6 @@
    "h": 1208
   },
   "scale": "1",
-  "note": "Gốc ở giữa-đáy ô (setOrigin(0.5,1)). walk-side-* nhìn sang TRÁI; đi sang phải = flipX (tấm đi phải gửi kèm là ảnh lật gương của tấm đi trái)."
+  "note": "Gốc ở giữa-đáy ô (setOrigin(0.5,1)). walk-side-* nhìn sang TRÁI; đi sang phải = flipX. T-026 (31/10/2026): walk-side-0..5 lấy từ art-source/characters/detective/detective-walk-side-v2.png (hình 1,2,3,5,6,7) bằng scripts/art/build_detective_walk.py; idle-* giữ từ build_room201_assets.py."
  }
 }

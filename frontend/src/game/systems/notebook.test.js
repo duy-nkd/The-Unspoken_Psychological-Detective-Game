@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { NOTEBOOK_TABS, addEntry, createEmptyNotebook } from './notebook'
+import { NOTEBOOK_TABS, addEntry, createEmptyNotebook, notebookSourceKey } from './notebook'
 
 describe('notebook — Project.docx §3.2', () => {
   it('có đúng 4 tab theo thứ tự tài liệu', () => {
@@ -36,5 +36,9 @@ describe('notebook — Project.docx §3.2', () => {
   it('từ chối tab lạ và entry thiếu id', () => {
     expect(() => addEntry(createEmptyNotebook(), 'inventory', { id: 'x' })).toThrow(RangeError)
     expect(() => addEntry(createEmptyNotebook(), 'people', {})).toThrow(TypeError)
+  })
+
+  it('không suy nguồn cảnh sát chỉ từ nơi giữ vật hoặc gán nhãn cho bản lưu thiếu nguồn', () => {
+    expect(notebookSourceKey({ id: 'EV_OLD', physical_custody: 'police' })).toBeNull()
   })
 })

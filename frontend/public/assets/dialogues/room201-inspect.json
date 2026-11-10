@@ -3,6 +3,6 @@
   "R201_BOARD": ["Con chó hoàng"],
   "R201_DESK": ["con chó nhân"],
   "R201_CALENDAR": ["con chó tín"],
-  "R201_COATS": "con chó mèo",
-  "R201_WINDOW": "nhiều con chó"
+  "R201_COATS": ["con chó mèo"],
+  "R201_WINDOW": ["nhiều con chó"]
 }

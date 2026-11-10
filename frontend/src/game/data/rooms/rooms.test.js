@@ -2,7 +2,63 @@ import { describe, expect, it } from 'vitest'
 import { footAt } from '../../systems/depthScale'
 import { buildGrid, findPath } from '../../systems/pathfinding'
 import { isFootClear } from '../../systems/walkArea'
-import { ROOMS, entrancePoint } from '.'
+import { ROOMS, entrancePoint, roomBackground } from '.'
+import { ROOM_204, ROOM_204_HOTSPOTS } from './room204'
+
+it('các vùng bấm phòng 204 nằm trong ảnh và có lối đi giữa mọi điểm đứng', () => {
+  const foot = ([, y]) => footAt(ROOM_204.depth, y)
+  const grid = buildGrid(ROOM_204, foot)
+  expect(isFootClear(ROOM_204, [830, 544], foot([830, 544]))).toBe(false)
+  const hotspots = Object.entries(ROOM_204_HOTSPOTS)
+  const starts = [
+    ROOM_204.spawn,
+    ...hotspots.map(
+      ([
+        ,
+        {
+          stand: [x, y],
+        },
+      ]) => ({ x, y }),
+    ),
+  ]
+  for (const [
+    index,
+    [
+      id,
+      {
+        stand: [x, y],
+        rect: [left, top, width, height],
+      },
+    ],
+  ] of hotspots.entries()) {
+    expect(left >= 0 && top >= 0 && width > 0 && height > 0, id).toBe(true)
+    expect(left + width <= 1280 && top + height <= 720, id).toBe(true)
+    expect(isFootClear(ROOM_204, [x, y], foot([x, y])), id).toBe(true)
+    for (const start of starts) expect(findPath(grid, start, { x, y }), id).not.toBeNull()
+    for (const [
+      otherId,
+      {
+        rect: [otherLeft, otherTop, otherWidth, otherHeight],
+      },
+    ] of hotspots.slice(index + 1)) {
+      const overlap =
+        left < otherLeft + otherWidth &&
+        otherLeft < left + width &&
+        top < otherTop + otherHeight &&
+        otherTop < top + height
+      expect(overlap, `${id} / ${otherId}`).toBe(false)
+    }
+  }
+})
+
+it('phòng 204 hiện ảnh Tùng trong lúc được khám hiện trường', () => {
+  expect(roomBackground(ROOM_204)).toBe(ROOM_204.background)
+  const flags = { inspect_permission: true, samples_submitted: false }
+  expect(roomBackground(ROOM_204, { flags })).toBe(ROOM_204.backgroundWithTung)
+  expect(roomBackground(ROOM_204, { flags: { ...flags, samples_submitted: true } })).toBe(
+    ROOM_204.background,
+  )
+})
 
 /** Kiểm tra chung cho MỌI phòng 2.5D (T-024): không kẹt nhân vật, cửa nối hai chiều. */
 for (const room of Object.values(ROOMS)) {
