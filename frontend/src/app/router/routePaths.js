@@ -4,4 +4,7 @@ export const ROUTES = Object.freeze({
   REGISTER: '/register',
   PLAY: '/play',
   ADMIN: '/admin',
+  ADMIN_USERS: '/admin/users',
+  ADMIN_BUGS: '/admin/bugs',
+  ADMIN_EVIDENCE: '/admin/evidence',
 })

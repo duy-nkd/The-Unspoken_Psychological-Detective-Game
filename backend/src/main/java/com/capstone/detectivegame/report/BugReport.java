@@ -62,6 +62,10 @@ public class BugReport {
         return status;
     }
 
+    public void updateStatus(String status) {
+        this.status = status;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

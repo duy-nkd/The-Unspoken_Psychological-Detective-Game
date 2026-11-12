@@ -1,5 +1,6 @@
 package com.capstone.detectivegame.security;
 
+import com.capstone.detectivegame.user.User;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +22,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
  * - Tắt CSRF (REST stateless, không session cookie)
  * - CORS cho Frontend React
  * - /api/auth/**  -> Permit All
- * - /api/game/**, /api/admin/** -> bắt buộc token hợp lệ
+ * - /api/game/**  -> bắt buộc token hợp lệ
+ * - /api/admin/** -> bắt buộc token hợp lệ + quyền ROLE_ADMIN (DEC-024)
  * PENDING(ISS-09): /api/reports/** chưa được quy định -> tạm rơi vào anyRequest().authenticated()
  *                  (khớp §1.2 Bước 1 "bắt buộc đính kèm JWT").
- * PENDING(ISS-10): chưa có ROLE_ADMIN -> /api/admin/** mới chỉ yêu cầu đăng nhập.
  */
 @Configuration
 public class SecurityConfig {
@@ -38,7 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/game/**").authenticated()
-                        .requestMatchers("/api/admin/**").authenticated()
+                        .requestMatchers("/api/admin/**").hasAuthority(User.ROLE_ADMIN)
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -9,11 +9,11 @@
 
 | Trường | Giá trị |
 |---|---|
-| Cập nhật lần cuối | 10/11/2026 — T-050. Đã đổi mở đầu và nối chân dung Linh, Minh, Hào |
-| Tác vụ đang làm | T-043 chờ ảnh 24 khung. Chương 1 còn playtest tay TD-38 |
-| Đã xong gần nhất | T-050 nối hướng dẫn đến A204 trước khi lấy lời khai. T-048 hoàn thành ảnh Tùng và vùng cổ |
-| Trạng thái dở dang | Mã Chương 1 bản trước đã đẩy lên `origin/Nhan` tại `fff5ed8`. T-048 và T-050 đang ở máy |
-| Việc tiếp theo | Playtest tay theo TD-38 và chốt ISS-29 |
+| Cập nhật lần cuối | 12/11/2026 — T-052 (Xây dựng phân hệ Website Admin tách biệt phong cách Noir Archive — DEC-024) |
+| Tác vụ đang làm | T-052 xong (`npm run check` xanh 183 test + build; `mvn test` xanh 7 test). Còn T-043 chờ ảnh 24 khung, playtest tay TD-38 và chốt ISS-29 |
+| Đã xong gần nhất | T-052: Website Admin 4 phân trang + API `/api/admin/**` + phân quyền `ROLE_ADMIN` + `AdminSeeder` + nút nối trên `/play` chỉ hiện cho Admin. Trước đó: T-050, T-051 |
+| Trạng thái dở dang | Không có code dở. Cả frontend (`npm run check`) và backend (`mvn test`) đều PASS |
+| Việc tiếp theo | Playtest tay theo TD-38 và chốt ISS-29 (userId cho lưu server) |
 | Đang bị chặn bởi | ISS-29 (lưu server) |
 | Lệnh/kiểm tra cần chạy lại khi tiếp tục | `git status` · `cd frontend; npm run check` · `npm run test:e2e` · `python scripts/chapter1/validate.py` (tự chạy validator của gói trên bản sao tạm — KHÔNG chạy thẳng `docs/sources/.../validate_data.py` vì nó ghi đè `validation.results.json`) |
 | Ghi chú cho phiên sau | Không cần mở lại zip: đọc `docs/chapter1/CHAPTER1_MEMORY.md`. "Ông chủ trọ" có ảnh `landlord-*` = **HÒA** trong dữ liệu. Present: lấy route khớp **đầu tiên theo thứ tự mảng** (đúng validator). Máy: Java 21, Maven 3.10.0, MySQL 8.0.46 (`C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe`), `DB_PASSWORD` ở biến môi trường User |
@@ -524,3 +524,12 @@
 ### T-051 — Khôi phục luồng đăng nhập và đăng ký cục bộ
 - Cổng 8080 trả 404 từ Steam WebHelper, backend game chưa nghe ở 8081. Đã khởi động backend 8081 và Vite 5173. `frontend/.env.local` đặt API thành `http://localhost:8081/api` cho máy này.
 - Chrome kiểm tra qua form thật. Đăng ký trả HTTP 201, đăng nhập trả HTTP 200 và chuyển đến `/play`. Đã dọn đúng tài khoản thử trong MySQL cục bộ. Hai dịch vụ vẫn chạy để người dùng tiếp tục thử.
+
+### T-052 — Xây dựng phân hệ Website Admin tách biệt (DEC-024)
+- Ngày giao: 12/11/2026 — người dùng yêu cầu lên PLAN trước cho Website Admin theo style hợp đồ án, tách biệt thư mục rõ ràng, có nút nối từ trang game chỉ dành cho tài khoản Admin duy nhất, bổ sung các tính năng quản trị phù hợp; sau đó duyệt thực thi.
+- REQ / ISS liên quan: REQ-050, TD-32..TD-35; đóng ISS-10, ISS-11, ISS-12.
+- **Kết quả thực hiện:**
+  - **Backend (`backend/src/main/java/com/capstone/detectivegame/admin/`):** Tạo `AdminProperties`, `AdminSeeder` (tự động tạo tài khoản `ROLE_ADMIN` duy nhất khi khởi động, mặc định `admin` / `admin123`), `AdminService`, `AdminController` (`/api/admin/overview`, `/users`, `/users/{userId}/save`, `/reports/bugs`, `/reports/bugs/{id}/status`, `/evidence`, `/evidence/seed-chapter1`) và 6 DTO; cập nhật `SecurityConfig` yêu cầu `.hasAuthority("ROLE_ADMIN")` cho `/api/admin/**`; thêm `AdminServiceTest` (3 unit test mới).
+  - **Frontend (`frontend/src/features/admin/` & `app/router/AdminRoute.jsx`):** Thiết kế theo phong cách *Noir Detective Archive* đồng bộ màu/font với game; tạo `AdminRoute.jsx` chặn người chơi thường; sửa `GamePlayPage.jsx` chỉ hiển thị nút `"HỒ SƠ QUẢN TRỊ →"` khi `session?.role === 'ROLE_ADMIN'`; tách rõ `admin/{api,layout,components,pages}` với 4 trang: `AdminOverviewPage`, `AdminUsersPage` (kèm `SaveJsonModal` soi 4 tab Sổ tay JSON cho E2E §5.2), `AdminBugReportsPage` (polling 5s, đổi `PENDING` ⇄ `RESOLVED`), `AdminEvidencePage` (quản lý & nạp nhanh 12 vật chứng Chương 1).
+- **Kiểm tra:** `cd frontend; npm run check` PASS (ESLint 0 lỗi, Prettier sạch, Vitest 25 file / 183 tests PASS, Vite build thành công); `cd backend; mvn test` PASS (7/7 tests, BUILD SUCCESS).
+

@@ -59,10 +59,21 @@
     url('/assets/fonts/BeVietnamPro-SemiBold.ttf') format('truetype');
 }
 
-/* Nền tối chung cho web shell (Phaser tự vẽ trong canvas) */
+/* Nền tối và font chữ tiếng Việt chuẩn cho web shell */
+@theme {
+  --font-sans: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+  --font-serif: 'Segoe UI', Roboto, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
 :root {
   color-scheme: dark;
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Segoe UI',
+    Roboto,
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 body {
@@ -70,4 +81,11 @@ body {
   min-height: 100vh;
   background: #17151b;
   color: #f4efe6;
+  font-family:
+    'Segoe UI',
+    Roboto,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
 }

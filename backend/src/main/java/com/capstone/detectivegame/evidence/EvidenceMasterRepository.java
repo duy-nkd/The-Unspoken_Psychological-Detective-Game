@@ -8,5 +8,9 @@ public interface EvidenceMasterRepository extends JpaRepository<EvidenceMaster, 
 
     Optional<EvidenceMaster> findByEvidenceCode(String evidenceCode);
 
+    boolean existsByEvidenceCode(String evidenceCode);
+
     List<EvidenceMaster> findByChapterIdOrderByIdAsc(int chapterId);
+
+    List<EvidenceMaster> findAllByOrderByChapterIdAscIdAsc();
 }

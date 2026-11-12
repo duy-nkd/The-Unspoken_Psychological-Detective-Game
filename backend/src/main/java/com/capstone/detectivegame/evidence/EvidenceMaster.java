@@ -36,6 +36,20 @@ public class EvidenceMaster {
         // JPA
     }
 
+    public EvidenceMaster(int chapterId, String evidenceCode, String evidenceName, String description) {
+        this.chapterId = chapterId;
+        this.evidenceCode = evidenceCode;
+        this.evidenceName = evidenceName;
+        this.description = description;
+    }
+
+    public void updateDetails(int chapterId, String evidenceCode, String evidenceName, String description) {
+        this.chapterId = chapterId;
+        this.evidenceCode = evidenceCode;
+        this.evidenceName = evidenceName;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

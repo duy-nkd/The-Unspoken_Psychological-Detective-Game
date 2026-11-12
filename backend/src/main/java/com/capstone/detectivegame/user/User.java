@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 public class User {
 
     public static final String ROLE_PLAYER = "ROLE_PLAYER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,9 +44,14 @@ public class User {
     }
 
     public User(String username, String email, String passwordHash) {
+        this(username, email, passwordHash, ROLE_PLAYER);
+    }
+
+    public User(String username, String email, String passwordHash, String role) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.role = role == null ? ROLE_PLAYER : role;
     }
 
     public Long getId() {

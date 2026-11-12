@@ -15,5 +15,14 @@ export const ENDPOINTS = Object.freeze({
   reports: {
     bug: '/reports/bug', // POST  -> 201 Created
   },
-  // PENDING(ISS-10): API admin (danh sách bug, PENDING->RESOLVED, thống kê) chưa được đặc tả
+  admin: {
+    overview: '/admin/overview', // GET -> 200 AdminOverviewResponse
+    users: '/admin/users', // GET -> 200 List<AdminUserItemDto>
+    userSave: (userId) => `/admin/users/${encodeURIComponent(userId)}/save`, // GET -> 200 AdminUserSaveDetailDto
+    bugs: '/admin/reports/bugs', // GET ?status=ALL|PENDING|RESOLVED -> 200 List<AdminBugReportDto>
+    bugStatus: (id) => `/admin/reports/bugs/${encodeURIComponent(id)}/status`, // PATCH -> 200 AdminBugReportDto
+    evidence: '/admin/evidence', // GET -> 200, POST -> 201
+    evidenceItem: (id) => `/admin/evidence/${encodeURIComponent(id)}`, // PUT -> 200, DELETE -> 200
+    seedChapter1Evidence: '/admin/evidence/seed-chapter1', // POST -> 200 List<AdminEvidenceDto>
+  },
 })
