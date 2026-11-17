@@ -17,11 +17,11 @@ const HALLWAY_TARGETS = {
   P1_LINH_DISPATCH: { name: 'Linh', suspect: 'linh', stand: [784, 458] },
   P1_HAO_DISPATCH: { name: 'Hào', suspect: 'hao', stand: [518, 464] },
   P1_MINH_DISPATCH: { name: 'Minh', suspect: 'minh', stand: [929, 458] },
-  P1_REVISIT_HOA: { name: 'Hòa', stand: [632, 458] },
+  P1_REVISIT_HOA: { name: 'Hòa', characterId: 'landlord', stand: [632, 458] },
   P3_LINH_START: { name: 'Linh', suspect: 'linh', stand: [784, 458] },
   P3_HAO_START: { name: 'Hào', suspect: 'hao', stand: [518, 464] },
   P3_MINH_START: { name: 'Minh', suspect: 'minh', stand: [929, 458] },
-  P3_HOA_START: { name: 'Hòa', stand: [632, 458] },
+  P3_HOA_START: { name: 'Hòa', characterId: 'landlord', stand: [632, 458] },
 }
 
 export function openingMapObjective(node) {

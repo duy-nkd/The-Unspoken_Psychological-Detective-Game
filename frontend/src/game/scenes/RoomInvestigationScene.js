@@ -10,7 +10,7 @@ import { onSceneEnd } from '../core/sceneLifecycle'
 import { FIRST_ROOM_ID, ROOMS, entrancePoint, roomBackground } from '../data/rooms'
 import { getInspectLines } from '../data/rooms/inspectContent'
 import { isStoryMapNode, openingMapObjective, storyMapHotspots } from '../data/storyMap'
-import { suspectPortrait } from '../data/suspectPortraits'
+import { Npc } from '../entities/Npc'
 import { Player } from '../entities/Player'
 import { footAt } from '../systems/depthScale'
 import { buildGrid, findPath, smoothPath } from '../systems/pathfinding'
@@ -60,6 +60,7 @@ export class RoomInvestigationScene extends Phaser.Scene {
     // Scene được dựng lại (restart) khi đổi phòng -> xóa tham chiếu tới object của lần trước
     this.leaving = false
     this.player = null
+    this.npcs = new Map()
     this.marker = null
     this.debugOverlay = null
   }
@@ -119,7 +120,13 @@ export class RoomInvestigationScene extends Phaser.Scene {
     this.openingObjective = openingMapObjective(this.runtime.story?.node)
     const storySpots = storyMapHotspots(this.runtime.story ?? {})
     this.hotspots = this.storyMap ? storySpots : this.room.hotspots
-    if (this.storyMap) this.createStoryMapControls(storySpots)
+    if (this.storyMap) {
+      this.createStoryMapControls(storySpots)
+      this.hotspots = storySpots.map((spot) => ({
+        ...spot,
+        rect: this.npcs.get(spot.id)?.rect ?? spot.rect,
+      }))
+    }
 
     this.createHotspotZones()
     this.bindInput()
@@ -132,6 +139,8 @@ export class RoomInvestigationScene extends Phaser.Scene {
     onSceneEnd(this, () => {
       this.events.off(Phaser.Scenes.Events.RESUME, onResume)
       this.player?.destroy()
+      for (const npc of this.npcs.values()) npc.destroy()
+      this.npcs.clear()
     })
     this.cameras.main.fadeIn(ROOM_FADE_MS, 0, 0, 0)
   }
@@ -139,27 +148,10 @@ export class RoomInvestigationScene extends Phaser.Scene {
   createStoryMapControls(spots) {
     for (const spot of spots) {
       if (!spot.name) continue
-      if (spot.suspect) {
-        const { portrait, portraitFrame } = suspectPortrait(spot.suspect)
-        const [x, y] = spot.stand
-        this.add
-          .rectangle(x, y - 83, 52, 52, COLORS.panel)
-          .setStrokeStyle(2, COLORS.panelBorder)
-          .setDepth(DEPTH.HUD)
-        this.add
-          .image(x, y - 83, portrait, portraitFrame)
-          .setDisplaySize(48, 48)
-          .setDepth(DEPTH.HUD + 1)
-      }
-      this.add
-        .text(spot.stand[0], spot.stand[1] - 55, spot.name, {
-          ...TEXT_STYLES.body,
-          color: COLORS.textHex,
-          backgroundColor: '#241f2b',
-          padding: { x: 6, y: 2 },
-        })
-        .setOrigin(0.5)
-        .setDepth(DEPTH.HUD)
+      this.npcs.set(
+        spot.id,
+        new Npc(this, { room: this.room, spot, depthBase: CHARACTER_DEPTH_BASE }),
+      )
     }
     if (this.openingObjective) return
     const button = new PanelButton(this, {

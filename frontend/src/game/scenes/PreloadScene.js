@@ -7,6 +7,8 @@ import { getRuntime } from '../core/runtime'
 import { ROOMS } from '../data/rooms'
 import { ROOM_204_NECK_PHOTO } from '../data/rooms/room204'
 import { SUSPECT_PORTRAITS, suspectPortraitKey } from '../data/suspectPortraits'
+import { loadNpcAssets } from '../data/npcSprites'
+import { registerNpcTextures } from '../entities/Npc'
 import { DETECTIVE_ATLAS } from '../entities/Player'
 import { loadCharacterAssets, registerCharacterAnimations } from '../data/characters'
 import { CHAPTER_DATA, chapterFileUrl } from '../data/chapters'
@@ -44,6 +46,7 @@ export class PreloadScene extends Phaser.Scene {
       else this.load.json(file.key, chapterFileUrl(FIRST_CHAPTER, name))
     }
     loadCharacterAssets(this.load)
+    loadNpcAssets(this.load)
 
     // Phòng 2.5D + nhân vật thám tử đi lại (DEC-013)
     for (const room of Object.values(ROOMS)) {
@@ -72,6 +75,7 @@ export class PreloadScene extends Phaser.Scene {
       const texture = this.textures.get(textureKey)
       for (const [name, bounds] of Object.entries(frames)) texture.add(name, 0, ...bounds)
     }
+    registerNpcTextures(this.textures)
     // Hoạt ảnh thuộc AnimationManager toàn game -> tạo một lần, mọi scene dùng chung
     registerCharacterAnimations(this.anims)
     loadUiFonts().then(() => {

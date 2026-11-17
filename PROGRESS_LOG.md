@@ -7,17 +7,17 @@
 
 ## ĐIỂM KHÔI PHỤC (RESUME POINT) — luôn cập nhật mục này trước tiên
 
-> **T-072 hoàn tất thiết kế lại6 trang Admin** theo skill và phạm vi người dùng duyệt (DEC-035). Check248/build/lint/format qua; Chrome27/27 +12/12 sau tinh chỉnh cuối. QA: `docs/ADMIN_REDESIGN_QA.md`. G3 chưa được giao.
+> **T-076 hoàn tất thay dáng đứng Hào/Linh/Minh bằng đúng ba ảnh mới của người dùng**, giữ nguyên Hòa và cơ chế tương tác T-075 (DEC-037). Check251/38file + lint/format/build, Chrome map3/3 qua; đã xem desktop/tablet/mobile. Nguồn ảnh/SHA/QA: `docs/HALLWAY_NPC_POSES.md`. Nhánh revert-9-Nhan; thay đổi T-075 và stash palette64c180e giữ nguyên.
 
 | Trường | Giá trị |
 |---|---|
-| Cập nhật lần cuối | 17/11/2026 — T-072 hoàn tất redesign Admin |
-| Tác vụ đang làm | T-072 đã hoàn tất; chờ yêu cầu tiếp theo của người dùng |
-| Đã xong gần nhất | Redesign6trang Admin theo DEC-035; check248 + lint/format/build qua; Chrome27/27, chạy lại12/12 sau tinh chỉnh skip link;30layout không tràn trang. QA: docs/ADMIN_REDESIGN_QA.md |
-| Trạng thái dở dang | Nhánh Nhan; UI/docs/E2E chưa commit/push. Không merge/unmerged; không sửa backend/auth/API/DB/dependency. T-071 có sẵn trước T-072 được giữ |
-| Việc tiếp theo | Chờ người dùng xem Admin bằng tài khoản thật. Tác vụ thiết kế đã xong; chưa kiểm tích hợp live MySQL/thiết bị thật, không tự triển khai G3 hoặc commit/push |
-| Đang bị chặn bởi | Không. Giới hạn QA: fixture API, chưa giao dịch backend/MySQL thật; không ghi DB người dùng |
-| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có tiến trình test/server của tác vụ còn chạy. Mã cuối check248 qua; 27Chrome qua +12Admin lặp sau CSScuối. Ảnh local ignored frontend/node_modules/.cache/admin-redesign-qa/ |
+| Cập nhật lần cuối | 17/11/2026 — T-076 hoàn tất thay ảnh và kiểm tra |
+| Tác vụ đang làm | T-076 hoàn tất; chờ yêu cầu tiếp theo của người dùng |
+| Đã xong gần nhất | Đúng3dáng đứng mới; Hòa và9file bảo vệ khớp SHA ban đầu; check251/38file + lint/format/build và Chrome map3/3 qua, đã xem3cỡ màn hình; QA/DEC-037 đã ghi |
+| Trạng thái dở dang | Không còn tiến trình test/server của tác vụ. Thay đổi T-075/T-076 chưa commit/push, giữ nhánh revert-9-Nhan và stash palette |
+| Việc tiếp theo | Người dùng tải lại game để xem dáng đứng mới. Không tự áp stash/commit/push; chưa kiểm trên thiết bị vật lý/backend thật |
+| Đang bị chặn bởi | Không. DB, file ignored/config local không đụng tới |
+| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có lệnh đang chạy. Check session38260 qua251unit/38file + lint/format/build, Chrome session18453 qua3/3. Chưa chạy lại full Chương1/validator trong T-076 vì chỉ thay nguồn ảnh |
 | Ghi chú cho phiên sau | Không cần mở lại zip: đọc `docs/chapter1/CHAPTER1_MEMORY.md`. "Ông chủ trọ" có ảnh `landlord-*` = **HÒA** trong dữ liệu. Present: lấy route khớp **đầu tiên theo thứ tự mảng** (đúng validator). Máy: Java 21, Maven 3.10.0, MySQL 8.0.46 (`C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe`), `DB_PASSWORD` ở biến môi trường User |
 
 ---
@@ -837,25 +837,25 @@ Nhánh Nhan:
 
 | Trường | Giá trị |
 |---|---|
-| Cập nhật lần cuối | 17/11/2026 — T-072 hoàn tất redesign Admin |
-| Tác vụ đang làm | T-072 đã hoàn tất; chờ yêu cầu tiếp theo của người dùng |
-| Đã xong gần nhất | Redesign6trang Admin theo DEC-035; check248 + lint/format/build qua; Chrome27/27, chạy lại12/12 sau tinh chỉnh skip link;30layout không tràn trang. QA: docs/ADMIN_REDESIGN_QA.md |
-| Trạng thái dở dang | Nhánh Nhan; UI/docs/E2E chưa commit/push. Không merge/unmerged; không sửa backend/auth/API/DB/dependency. T-071 có sẵn trước T-072 được giữ |
-| Việc tiếp theo | Chờ người dùng xem Admin bằng tài khoản thật. Tác vụ thiết kế đã xong; chưa kiểm tích hợp live MySQL/thiết bị thật, không tự triển khai G3 hoặc commit/push |
-| Đang bị chặn bởi | Không. Giới hạn QA: fixture API, chưa giao dịch backend/MySQL thật; không ghi DB người dùng |
-| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có tiến trình test/server của tác vụ còn chạy. Mã cuối check248 qua; 27Chrome qua +12Admin lặp sau CSScuối. Ảnh local ignored frontend/node_modules/.cache/admin-redesign-qa/ |
+| Cập nhật lần cuối | 17/11/2026 — T-074 thay code theo upstream/revert-9-Nhan |
+| Tác vụ đang làm | T-074 đã hoàn tất đồng bộ code theo nhánh được chỉ định |
+| Đã xong gần nhất | Sao lưu14file gồm palette13file và log vào stash64c180e7d28e42af55290a99dcb3a97cb7c4e1fd. Trước khi cập nhật log, HEAD/index/worktree khớp nguồn hoàn toàn |
+| Trạng thái dở dang | Local revert-9-Nhan tracking upstream/revert-9-Nhan; Nhan giữ8cdb446. Không có sửa code riêng sau checkout, chỉ ghi nhật ký này theo DEC-002; không commit/push |
+| Việc tiếp theo | Chờ yêu cầu người dùng; không tự khôi phục palette từ stash |
+| Đang bị chặn bởi | Không. DB, file ignored/config local không đụng tới |
+| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có lệnh đang chạy. npm run check qua248/248 (37file), lint/format/build. Chưa kiểm backend/MySQL/Chrome trong tác vụ Git; code không sửa riêng |
 
 Nhánh duy:
 
 | Trường | Giá trị |
 |---|---|
-| Cập nhật lần cuối | 17/11/2026 — T-072 hoàn tất redesign Admin |
-| Tác vụ đang làm | T-072 đã hoàn tất; chờ yêu cầu tiếp theo của người dùng |
-| Đã xong gần nhất | Redesign6trang Admin theo DEC-035; check248 + lint/format/build qua; Chrome27/27, chạy lại12/12 sau tinh chỉnh skip link;30layout không tràn trang. QA: docs/ADMIN_REDESIGN_QA.md |
-| Trạng thái dở dang | Nhánh Nhan; UI/docs/E2E chưa commit/push. Không merge/unmerged; không sửa backend/auth/API/DB/dependency. T-071 có sẵn trước T-072 được giữ |
-| Việc tiếp theo | Chờ người dùng xem Admin bằng tài khoản thật. Tác vụ thiết kế đã xong; chưa kiểm tích hợp live MySQL/thiết bị thật, không tự triển khai G3 hoặc commit/push |
-| Đang bị chặn bởi | Không. Giới hạn QA: fixture API, chưa giao dịch backend/MySQL thật; không ghi DB người dùng |
-| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có tiến trình test/server của tác vụ còn chạy. Mã cuối check248 qua; 27Chrome qua +12Admin lặp sau CSScuối. Ảnh local ignored frontend/node_modules/.cache/admin-redesign-qa/ |
+| Cập nhật lần cuối | 17/11/2026 — T-074 thay code theo upstream/revert-9-Nhan |
+| Tác vụ đang làm | T-074 đã hoàn tất đồng bộ code theo nhánh được chỉ định |
+| Đã xong gần nhất | Sao lưu14file gồm palette13file và log vào stash64c180e7d28e42af55290a99dcb3a97cb7c4e1fd. Trước khi cập nhật log, HEAD/index/worktree khớp nguồn hoàn toàn |
+| Trạng thái dở dang | Local revert-9-Nhan tracking upstream/revert-9-Nhan; Nhan giữ8cdb446. Không có sửa code riêng sau checkout, chỉ ghi nhật ký này theo DEC-002; không commit/push |
+| Việc tiếp theo | Chờ yêu cầu người dùng; không tự khôi phục palette từ stash |
+| Đang bị chặn bởi | Không. DB, file ignored/config local không đụng tới |
+| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có lệnh đang chạy. npm run check qua248/248 (37file), lint/format/build. Chưa kiểm backend/MySQL/Chrome trong tác vụ Git; code không sửa riêng |
 
 ### T-066 — Thực thi G2: giờ Việt Nam trong Admin và lịch bảo trì
 - Ngày giao: 17/11/2026 — người dùng: "thực thi G2". Căn cứ: SRC-7 (TEETS2 M03), docs/TEETS2_FIX_PLAN.md §G2; DEC-031.
@@ -936,3 +936,60 @@ Nhánh duy:
 - B3 checkpoint: đã đối chiếu AST6page + ChapterFunnelChart, chỉ loại class/ARIA/scroll focus/ref trả focus/whitespace; nghiệp vụ khớp snapshot trước sửa. Adapter/helper/auth/router/backend/dependency/source không có diff. Modal chỉ đổi lớp trình bày và xử lý focus/Escape.
 - B4 checkpoint: check248/37file + lint/format/build qua. Chrome lượt đầy đủ27/27 qua. QA phát hiện và đã sửa focus Tab, ref mở dialog sau tải async, tương phản chữ thiếu ảnh4.34:1; sau tinh chỉnh skip link/ảnh dừng transition đã chạy lại12/12 Admin và check cuối qua. 30layout (6trang×5width) không tràn tài liệu; 26ảnh và source-audit.json local ignored. Đã xem desktop/tablet/mobile cùng form/modal cuối.
 - Kết quả cuối / Self-Check: T-072 hoàn tất trong phạm vi thiết kế. Báo cáo docs/ADMIN_REDESIGN_QA.md nêu đủ thao tác/giới hạn; không báo marketing GATE PASS, không tự áp quy tắc landing page trái prompt. Không khẳng định toàn bộ live transaction đã kiểm; chưa MySQL/backend thật, thiết bị thật/trình duyệt khác. Không sửa backend/database/auth/API/content/dependency, không commit/push, không có điểm cần xác nhận. Bước tiếp theo: người dùng xem giao diện thực tế; G3 chờ giao việc.
+
+### T-074 — Thay code local bằng nhánh upstream/revert-9-Nhan
+- Ngày: 17/11/2026; người dùng yêu cầu lấy code từ repo duy-nkd/The-Unspoken_Psychological-Detective-Game để thay code máy, sau đó chốt tên nhánh revert-9-Nhan.
+- Căn cứ: yêu cầu hiện tại, remote upstream xác minh đúng URL; DEC-002/003 về kế hoạch/checkpoint. Không thay đặc tả hoặc API.
+
+#### Kế hoạch (DEC-003)
+- Mục đích: đồng bộ code máy đúng nhánh được chỉ định, có đường khôi phục thay đổi cũ.
+- Ảnh hưởng: fetch và tạo local revert-9-Nhan tracking upstream; giữ nguyên Nhan/commit8cdb446, stash toàn bộ thay đổi chưa commit. Không reset nhánh cũ, không push/commit thường, không clean ignored hoặc tác động DB.
+- Rủi ro mất code: xác minh stash có đúng14file, base đúng8cdb446 và worktree sạch trước checkout; dừng nếu phát sinh thay đổi khác. Không có đề xuất phát triển mới.
+
+#### Bước con và checkpoint
+| Bước | Kết quả | Kiểm tra |
+|---|---|---|
+| 1 | Đã fetch upstream/revert-9-Nhan:5c9a6fd7b1945afa420416d87405194c7fc77e08, Merge PR14 từ Nhan | Tree đã commit bằng8cdb446;14file chưa commit là palette và log |
+| 2 | Stash64c180e7d28e42af55290a99dcb3a97cb7c4e1fd, nhãn Backup Nhan palette and local progress before upstream/revert-9-Nhan 2026-11-17 | Đủ14file, base8cdb446, status sạch; stash chứa cả checkpoint T-073/T-074 trước chuyển |
+| 3 | Tạo và checkout local revert-9-Nhan theo upstream/revert-9-Nhan | HEAD đúng5c9a6fd; git diff và diff --cached với nguồn rỗng. Nhan vẫn8cdb446; không đổi master |
+| 4 | Frontend check đã qua | ESLint/Prettier +248/248 Vitest,37file +Vite build. Không sửa source/config/test để kiểm qua; chỉ nhật ký này khác nguồn |
+
+#### Kết quả / Self-Check
+- Hoàn tất: code/index khớp nguồn5c9a6fd; local revert-9-Nhan tracking upstream đúng repo. Nhan vẫn8cdb446, stash đủ14file và SHA64c180e7d28e42af55290a99dcb3a97cb7c4e1fd giữ nguyên.
+- Check248/37file, lint/format/build qua. Không chạy backend/MySQL/Chrome trong tác vụ chỉ đồng bộ Git này.
+- Sau checkout chỉ ghi PROGRESS_LOG theo DEC-002, không sửa code riêng. Không có điểm cần xác nhận; không commit/push/reset/clean hoặc tác động DB.
+- Bước tiếp theo: chờ yêu cầu người dùng; không tự khôi phục palette từ stash.
+
+
+### T-075 — NPC có cơ thể đứng trên map hành lang
+- Ngày17/11/2026; yêu cầu theo ảnh chụp: dùng model sẵn có, NPC có cơ thể để thám tử tương tác. Người dùng xác nhận Hòa=landlord và chọn bổ sung phần chân từ model Hòa hiện có.
+- Căn cứ: DEC-015/018/023, CHAPTER1_MEMORY§8, Phase1/P1_HUB (Linh cửa205, Hào lan can, Minh cầu thang). Kế hoạch chi tiết docs/HALLWAY_NPC_PLAN.md.
+- Kế hoạch DEC-003: giữ Phaser4.2.1, graph/save/API/nội dung/điểm đứng và choiceIndex; tách ảnh đứng3NPC từ sheet có sẵn trong preload, tạo model Hòa riêng có chân, actor neo chân/co giãn/depth nhưPlayer; vùng bấm theo thân+nhãn. Rủi ro alpha/halo, scale/occlusion, vùng bấm chồng, lộ tên Hào, actor lặp; kiểm unit + check/validator + Chrome map/chuột/E/restart và Chương1. Không thêm collision/AI/NPC/cốt truyện mới.
+- Checkpoint1: branch revert-9-Nhan, chỉ PROGRESS_LOG có sẵn; đã đọc nguồn/kế hoạch, xem sheet Linh/Hào/Minh đủ người, Hòa runtime nửa thân và gốc tới đùi. Thêm npcSprites.js, npcCutout.js, entities/Npc.js; chưa nối scene/chưa test. Hòa đang chuẩn bị imagegen được duyệt, không thay3biểu cảm hội thoại cũ.
+
+- Checkpoint2: imagegen hoàn tất model Hòa đủ chân, PNG887×1774 alpha0–255, bản riêng trong art-source và runtime (không sửa ảnh hội thoại). Đã nối preload/map và Npc neo chân/depth, vùng bấm theo thân+nhãn; unit tách nền3/3 qua. Thêm E2E và đang chạy Chrome session56849; chưa kết luận hình ảnh/tương tác. Check đầy đủ cần thu kết quả lại sau browser.
+- Checkpoint3: Chrome map3/3 qua sau sửa fixture: tài khoản chưa lưu trả404 (không phải200/null), node hỏi mở đầu thuộc DETECTIVE theo graph gốc (không tự giả định người NPC nói trước). Không đổi logic game để làm test qua. Đã xem desktop/mobile, bốn người đủ chân/nền trong suốt, lan can che đúng. Check251/38file + lint/format/build qua; validator6290, không broken/unreachable. Đang chạy lại6Chrome gồm kiểm map cuối (thêm ảnh tablet) và3ca Chương1 hiện có, session54589. Không build/pretest trong lúc browser chạy.
+- Checkpoint4: map cuối3/3 qua; Chương1 dừng2ca ở assertion cũ đòi head icon trên map. Đổi đúng kỳ vọng trình bày sang4body texture/không head icon, thêm không xuất hiện sớm; giữ toàn bộ kiểm tra hội thoại/nhép miệng/nghiệp vụ. Chạy lại chapter1.spec.js3/3 qua (session28542), hai lượt tớiCH2_ENTRY. Đã xem tablet, QA asset/prompt/số đo/giới hạn và DEC-036 ghi xong. Browser đã dừng; chuẩn bị check cuối.
+- Checkpoint5 / kết quả cuối: npm run check session45046 qua lint/format,251unit/38file và production build. Git diffcheck qua, staging rỗng/không unmerged; backend/graph/thoại/geometry/portrait gốc/React play/API/dependency không có diff. Asset Hòa và art-source cùng SHA ghi trong QA. Không pageerror trong map/Chương1, không còn test/server chạy.
+
+#### Kết quả / Self-Check T-075
+- Hoàn thành: model đứng4NPC theo asset được cung cấp và phần chân Hòa đã duyệt; neo chân/phối cảnh/depth/lan can; chuột vàE, tên Hào, vòng đời actor; kiểm tra và báo cáo `docs/HALLWAY_NPC_QA.md`.
+- Phạm vi file: `game/data/npcSprites.js`, `systems/npcCutout.js` +test, `entities/Npc.js`, `storyMap.js`, `PreloadScene.js`, `RoomInvestigationScene.js`;2E2E;2asset PNG Hòa; kế hoạch/QA/bộ nhớ/nhật ký. Không sửa schema/API/data graph/cốt truyện/lời thoại hoặc thêmNPC/collision/AI.
+- Kiểm tra: check cuối251/251; validator6290; Chrome map3/3 + Chương1 3/3, hai lượt đầy đủ tớiCH2_ENTRY và nhép miệng; đã xem desktop/tablet/mobile.
+- Chưa xác minh: backend/MySQL thật, trình duyệt khác và thiết bị vật lý; mobile vẫn cơ chế canvas hiện có. Không khẳng định các phần ngoài QA.
+- Điểm cần xác nhận: không có trong phạm vi đã được người dùng duyệt. Self-Check: đạt trong phạm vi được giao. Không commit/push; đang ở revert-9-Nhan, không áp stash palette hoặc thay nhánh.
+
+
+### T-076 — Thay dáng đứng Hào, Linh, Minh theo ảnh mới
+- Ngày17/11/2026; nguồn: người dùng chỉ rõ hình1=Hào, hình2=Linh, hình3=Minh; yêu cầu thay3model đứng tương tác, giữ nguyên ông chủ trọ. DEC-015/018/036; kế hoạch chi tiết `docs/HALLWAY_NPC_POSES.md`.
+- Kế hoạch DEC-003: sao chép nguyên byte3ảnh vào art-source/runtime, đổi riêng3nguồn trong registry; dùng pipeline CanvasTexture/cutout đã có, giữ model Hòa và mọi logic/điểm đứng/scale/depth/E/graph/save/API. Rủi ro viền JPG/nền/bóng giày/nhầm người; check và Chrome map/chuột/E/P1/P3/restart, xem desktop/tablet/mobile. Không phát sinh đề xuất đặc tả.
+- Checkpoint1: đã đọc checkpoint/bộ nhớ/working-rules/tài liệu Chương1 và khảo sát code/ảnh. Branch revert-9-Nhan, T-075 đang chưa commit được giữ; không migration. Ba ảnh1024×1536 RGB, đủ toàn thân, không tạo ảnh mới.
+- Checkpoint2: sao chép3ảnh thành6file (gốc art-source + runtime), SHA256 từng cặp khớp ảnh Downloads. Đổi riêng nguồn linh/hao/minh trong `npcSprites.js`; Hòa và8file asset/code/test liên quan được snapshot SHA ở `frontend/node_modules/.cache/hallway-npc-t076/baseline.json`. Chưa kiểm browser hoặc check lần này; chuẩn bị chạy.
+- Checkpoint3: npm run check qua251/251unit (38file), lint/format/build. Đối chiếu đủ9SHA (2asset Hòa + entity/cutout/preload/scene/storyMap +2E2E) khớp trước tác vụ; ảnh nguồn/runtime nguyên byte. Chuẩn bị Chrome map hiện có; không đổi test để kiểm qua.
+- Checkpoint4: Chrome map session18453 qua3/3, không pageerror; P1/P3/chuột/E/tên Hào/restart/alpha/neo chân/depth. Đã xem desktop/tablet/mobile, đúng3dáng mới, Hòa giữ nguyên. Sao chép ảnh/số đo vào cache riêng hallway-npc-t076;9SHA kiểm lại vẫn khớp. QA/source/SHA và DEC-037/SRC-8 ghi trong bộ nhớ; tài liệu T-075 ghi chú đã có bản cập nhật3model ở T-076.
+
+#### Kết quả / Self-Check T-076
+- Hoàn thành: dùng đúng Hao.jpg/Linh.jpg/Minh.jpg, sáu bản sao nguyên byte (art-source/runtime), thay riêng3nguồn trong npcSprites.js. Hòa/entity/cutout/scene/điểm đứng/tương tác/E/thoại/graph/API giữ nguyên.
+- Kiểm tra mới: check251unit (38file), lint/format/build và Chrome map3/3 qua; đã xem3cỡ màn hình; không có lỗi còn lại trong phạm vi QA. Không sửa test, backend hoặc dependency.
+- Chưa xác minh: backend/MySQL thật, browser khác Chrome, điện thoại/tablet vật lý. Không chạy lại full Chương1/validator lần này; kết quả T-075 chỉ là lịch sử.
+- Điểm cần xác nhận: không có trong phạm vi đã giao. Self-Check đạt theo nguồn ảnh/yêu cầu người dùng; không vẽ lại ảnh, không thêm đặc tả. Không commit/push hoặc áp stash palette; giữ các sửa có sẵn T-075.

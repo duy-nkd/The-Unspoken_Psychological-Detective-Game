@@ -433,6 +433,7 @@ for (const early of [true, false]) {
     await test.step('Phòng 201, hỏi đủ bốn người', async () => {
       await game.start(early)
       expect(await game.node()).toBe('P1_HALL_204')
+      expect(await game.hasTexture('RoomInvestigationScene', 'map-npc-linh')).toBe(false)
       expect(await game.hasTexture('RoomInvestigationScene', 'chapter1-portrait-linh')).toBe(false)
       await game.choose('P1_ENTER_204')
       expect(await game.node()).toBe('P1_ROOM_204_VIEW')
@@ -448,9 +449,10 @@ for (const early of [true, false]) {
       expect(await game.dialoguePortrait()).toEqual(['MINH', 'chapter1-portrait-minh'])
       await game.readLines()
       await game.choose('P1_HOA_04')
-      for (const id of ['linh', 'minh', 'hao']) {
+      for (const id of ['linh', 'minh', 'hao', 'landlord']) {
+        expect(await game.hasTexture('RoomInvestigationScene', `map-npc-${id}`)).toBe(true)
         expect(await game.hasTexture('RoomInvestigationScene', `chapter1-portrait-${id}`)).toBe(
-          true,
+          false,
         )
       }
       await game.choose('P1_LINH_DISPATCH', 'P1_LINH_01__002')
