@@ -365,7 +365,11 @@ export class RoomInvestigationScene extends Phaser.Scene {
   activateHotspot(hotspot) {
     if (hotspot.choiceIndex !== undefined) {
       this.rememberPosition()
-      if (this.runtime.story.choose(hotspot.choiceIndex)) this.openStory({ entrance: this.roomId })
+      if (this.runtime.story.choose(hotspot.choiceIndex))
+        this.openStory({
+          entrance: this.roomId,
+          observation: hotspot.id === 'P1_SEE_TUNG' ? 'tung' : null,
+        })
       return
     }
     if (hotspot.action === 'exit') {

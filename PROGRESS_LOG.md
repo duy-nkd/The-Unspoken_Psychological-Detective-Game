@@ -7,17 +7,23 @@
 
 ## ĐIỂM KHÔI PHỤC (RESUME POINT) — luôn cập nhật mục này trước tiên
 
-> **T-076 hoàn tất thay dáng đứng Hào/Linh/Minh bằng đúng ba ảnh mới của người dùng**, giữ nguyên Hòa và cơ chế tương tác T-075 (DEC-037). Check251/38file + lint/format/build, Chrome map3/3 qua; đã xem desktop/tablet/mobile. Nguồn ảnh/SHA/QA: `docs/HALLWAY_NPC_POSES.md`. Nhánh revert-9-Nhan; thay đổi T-075 và stash palette64c180e giữ nguyên.
+> **T-082 hoàn tất (19/11/2026):** mở màn cận cảnh từ Sổ tay → Vật chứng sau khi thu. Bản cuối qua `npm run check`, validator và Chrome 6/6, gồm hai lượt Chương 1 và ca đóng Sổ tay/đăng xuất của T-079. Công việc QA/ghi quyết định còn lại của T-079 xem mục bên dưới.
+
+> **T-081 hoàn tất (19/11/2026):** đã đối chiếu repo The Unspoken với skill và tài liệu CLI Phaser AE. Tài liệu mô tả luồng tạo game AE riêng và không nêu lệnh nhập repo Phaser sẵn có. Hướng dẫn phát triển trực tiếp trong repo hoặc thử prototype độc lập. Công việc dự án đang dở xem T-079 bên dưới.
+
+> **T-080 hoàn tất (19/11/2026):** Node.js v24.18.0 và npx 11.16.0 đạt yêu cầu. CLI xác nhận đăng nhập, skill Codex đã được kiểm tra và trang tạo game đã được mở trong trình duyệt mặc định. Khi quay lại công việc của dự án, xem điểm khôi phục T-079 bên dưới.
+
+> **T-079 đang làm màn Quan sát Tùng** theo yêu cầu: ảnh2/3trên, mô tả1/3dưới, rung ảnh ngắn và giữ tỷ lệ/cắt tràn. Đã đọc nguồn/xem asset, kế hoạch `docs/TUNG_OBSERVATION_PLAN.md`. Giữ graph/effect/API/save; branch revert-9-Nhan, HEAD1ec33b7.
 
 | Trường | Giá trị |
 |---|---|
-| Cập nhật lần cuối | 17/11/2026 — T-076 hoàn tất thay ảnh và kiểm tra |
-| Tác vụ đang làm | T-076 hoàn tất; chờ yêu cầu tiếp theo của người dùng |
-| Đã xong gần nhất | Đúng3dáng đứng mới; Hòa và9file bảo vệ khớp SHA ban đầu; check251/38file + lint/format/build và Chrome map3/3 qua, đã xem3cỡ màn hình; QA/DEC-037 đã ghi |
-| Trạng thái dở dang | Không còn tiến trình test/server của tác vụ. Thay đổi T-075/T-076 chưa commit/push, giữ nhánh revert-9-Nhan và stash palette |
-| Việc tiếp theo | Người dùng tải lại game để xem dáng đứng mới. Không tự áp stash/commit/push; chưa kiểm trên thiết bị vật lý/backend thật |
+| Cập nhật lần cuối | 17/11/2026 — T-079 khảo sát và kế hoạch preview Tùng |
+| Tác vụ đang làm | T-079: màn xem ảnh Tùng + mô tả tách vùng + rung ngắn khi tương tác P1 |
+| Đã xong gần nhất | Preview2/3 +1/3/rung350ms; check cuối254/39file + lint/format/build và validator6290 qua, Chrome preview3/3 trước bổ sung Large/logout qua |
+| Trạng thái dở dang | Đang chạy Chrome6ca preview + chapter1 (session32728), chưa thu đủ kết quả. Đã xem desktop/tablet/mobile; code/ảnh/graph/API/save scope audit sạch |
+| Việc tiếp theo | Thu Chrome6ca gồm Large/English/logout và hai lượt tớiCH2_ENTRY, ghi QA/DEC-038 và checkpoint cuối; không đổi code hoặc build khi browser chạy |
 | Đang bị chặn bởi | Không. DB, file ignored/config local không đụng tới |
-| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Không có lệnh đang chạy. Check session38260 qua251unit/38file + lint/format/build, Chrome session18453 qua3/3. Chưa chạy lại full Chương1/validator trong T-076 vì chỉ thay nguồn ảnh |
+| Lệnh/kiểm tra cần chạy lại khi tiếp tục | Check cuối session42588 qua254/39file + lint/format/build; validator6290 qua. Chrome session32728 đang chạy6ca; chưa kết luận6/6 trước khi có output |
 | Ghi chú cho phiên sau | Không cần mở lại zip: đọc `docs/chapter1/CHAPTER1_MEMORY.md`. "Ông chủ trọ" có ảnh `landlord-*` = **HÒA** trong dữ liệu. Present: lấy route khớp **đầu tiên theo thứ tự mảng** (đúng validator). Máy: Java 21, Maven 3.10.0, MySQL 8.0.46 (`C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe`), `DB_PASSWORD` ở biến môi trường User |
 
 ---
@@ -993,3 +999,57 @@ Nhánh duy:
 - Kiểm tra mới: check251unit (38file), lint/format/build và Chrome map3/3 qua; đã xem3cỡ màn hình; không có lỗi còn lại trong phạm vi QA. Không sửa test, backend hoặc dependency.
 - Chưa xác minh: backend/MySQL thật, browser khác Chrome, điện thoại/tablet vật lý. Không chạy lại full Chương1/validator lần này; kết quả T-075 chỉ là lịch sử.
 - Điểm cần xác nhận: không có trong phạm vi đã giao. Self-Check đạt theo nguồn ảnh/yêu cầu người dùng; không vẽ lại ảnh, không thêm đặc tả. Không commit/push hoặc áp stash palette; giữ các sửa có sẵn T-075.
+
+
+### T-077 — Hướng dẫn Everything up-to-date sau commit
+- Ngày17/11/2026; người dùng yêu cầu hướng dẫn tự sửa tình trạng push trước commit, sau commit/push vẫn Everything up-to-date. Căn cứ: yêu cầu hiện tại, quy tắc Git AGENTS.md, hiện trạng repo và remote được đọc thực tế.
+- Kế hoạch DEC-003: kiểm branch/status/log/reflog/staging/config/remotes; đọc đầu nhánh GitHub bằng ls-remote; đưa đúng lệnh theo nhánh đích. Chỉ nhật ký thay đổi, không sửa code/đặc tả/API hoặc tự commit/push. Rủi ro chính là nhầm local Nhan với HEAD trên revert-9-Nhan và nhầm origin fork với upstream repo nhóm; dùng refspec rõ ràng, không force/reset.
+- Checkpoint1 / kết quả: HEAD=1ec33b7 (cập nhật model nhân vật dáng đứng ngoài hành lang), người dùng commit lúc15:42:57+07; chứa22file T-075/T-076. Ban đầu worktree/index sạch. Local Nhan=8cdb446; revert-9-Nhan tracking upstream, ahead1 theo ref local. origin là DangTheNhan, upstream là duy-nkd.
+- Checkpoint2: git ls-remote xác minh origin/Nhan=8cdb446b871c68eb7055ce95c95a86fe5079c3df, upstream/revert-9-Nhan=5c9a6fd7b1945afa420416d87405194c7fc77e08; origin chưa có nhánh revert-9-Nhan và upstream chưa có Nhan trong kết quả. Nhan là tổ tiên HEAD, rev-list Nhan...HEAD=0/2. Không sửa ref remote/local bằng các kiểm tra này.
+- Hướng dẫn: nếu đích là fork Nhan, dùng git push origin HEAD:Nhan; nếu đích là nhánh nhóm hiện đang tracking, dùng git push upstream HEAD:revert-9-Nhan. git push origin Nhan chỉ gửi local Nhan cũ nên vẫn up-to-date. Chưa có nguyên văn lệnh người dùng đã chạy, đây là giải thích theo trạng thái xác minh, không khẳng định đã quan sát lệnh đó.
+- Self-Check: chẩn đoán và hướng dẫn hoàn tất; không tự thực hiện push/commit/đổi nhánh, không force/reset/stash hoặc sửa logic/cấu hình. Chỉ cập nhật PROGRESS_LOG theo DEC-002, không chạy lại test game. Chưa xác minh kết quả push sau khi người dùng làm theo.
+
+
+### T-078 — Xác nhận lưu model vào dự án
+- Ngày17/11/2026; người dùng nhắc lưu các model vào dự án. Căn cứ: SRC-8, DEC-036/037, docs/HALLWAY_NPC_POSES.md và file thực tế.
+- Kế hoạch DEC-003: đối chiếu file bản gốc/runtime, URL nạp và nội dung đã commit; nếu còn thiếu mới sao chép. Không thay thiết kế/logic/API; không phát sinh rủi ro ghi đè vì chỉ kiểm khi tất cả đã có.
+- Checkpoint/kết quả: đủ8file Hào/Linh/Minh/Hòa trong art-source/characters/<id>/ và frontend/public/assets/images/characters/. Get-Item xác nhận tồn tại/kích thước; git hash-object từng file khớp git rev-parse HEAD:<path>. Tất cả nằm trong commit1ec33b7, không phải file tạm hoặc chỉ tồn tại ở Downloads. Registry có4URL assets nội bộ tương ứng.
+- Self-Check: hoàn tất, không cần tạo/copy lại ảnh; không có điểm cần xác nhận. Không đổi code, không chạy lại test game/remote check hoặc commit/push; chỉ cập nhật PROGRESS_LOG theo DEC-002. Trạng thái remote trước đó xem T-077, không khẳng định người dùng đã push sau hướng dẫn.
+
+
+### T-079 — Preview Quan sát Tùng chia ảnh2/3, chữ1/3
+- Ngày17/11/2026; người dùng yêu cầu tương tácE hiển thị ảnh Tùng lớn, hiệu ứng hoảng hốt/rung, phần ảnh2/3trên và mô tả1/3dưới không chồng nhau; giữ tỷ lệ khi phóng full chiều ngang trong khung. Căn cứ: yêu cầu hiện tại, DEC-023, nguồn Phase1/P1_002, graph P1_SEE_TUNG và EV_NeckScratches.
+- Kế hoạch DEC-003: `docs/TUNG_OBSERVATION_PLAN.md`; preview trong StoryScene qua cờ trình bày tạm từ hotspot, giữ thời điểm runner.choose/effect và graph/save/API. Dùng ảnh Tung.png có sẵn; nội dung trích từ dữ liệu nguồn, không thêm suy luận. Rung ảnh0.35giây/giảm chuyển động, mask riêng và khung chữ dưới; kiểm helper/check/validator/Chrome/Chương1. Không đổi P2/asset/geometry/backend/dependency.
+- Checkpoint1: đọc checkpoint/bộ nhớ/working-rules và nguồn Chương1; xem Tung.png1536×1024, cổ/vết cào và thi thể đã có. Hiện P1_SEE_TUNG không có màn quan sát, router ghi flag rồi chuyển EXIT ngay. Branch revert-9-Nhan, HEAD1ec33b7; chỉ log có sửa trước tác vụ. Kế hoạch đã ghi, chưa sửa code/test.
+- Checkpoint2: triển khai helper trích2câu tư thế +1câu vết thương vật lý,3unit qua; UI ảnh base1536×1024 (không dùng crop P2), cover/mask480px và panel240px, rung ảnh350ms/giảm chuyển động/dọn tween+mask. Nối hai scene bằng cờ tạm, giữ choose/effect/stategraph; thêm UItext VI/EN và3E2E preview, helper fullgame đi qua preview mới. Check254/39file + lint/format/build qua; validator6290/1264node không broken/unreachable. Chưa kiểm hình ảnh/browser, chuẩn bị Chrome.
+- Checkpoint3: Chrome phát hiện GeometryMask không hỗ trợ WebGL ở Phaser4. Đã đối chiếu mã thư viện và đổi sang setCrop (không đổi renderer/dependency), kiểm crop×scale=480px; hai ca ảnh/rung/Enter và chuột/reduced-motion/effect qua. Ca Notebook/Escape còn chờ: gameControls captureEscape cần StoryScene.handlesEscape nhận preview mới; đã dừng lượt test và bổ sung nhận diện này. Đã xem desktop/mobile: vùng ảnh/chữ tách đúng, cổ rõ, không kéo méo. Chuẩn bị chạy lại3ca; chưa kết luận hoàn tất.
+- Checkpoint4: Chrome preview3/3 qua (session14709), Escape/Notebook/resume không lặp hiệu ứng, E/chuột/effect đúng một lần, không Evidence P1 và không pageerror. Đã xem desktop/mobile; bổ sung Large+English và logout qua React trong ca có sẵn để xác minh fit chữ/teardown thật. Không đổi code sau lượt3/3; chuẩn bị check cuối và Chrome6ca cùng Chương1.
+- Checkpoint5: check cuối session42588 qua254/254unit/39file + lint/format/build; validator6290 qua, scope backend/asset/public data/narrative/rooms/entities/dependency không có diff. Chrome6ca session32728 đang chạy; đã xem tablet. Không sửa mã/build hoặc prepare manifest trong lúc Chrome chạy. Đang ghi QA và quyết định, chưa kết luận đầy đủ hồi quy.
+
+### T-080 — Thiết lập Phaser AE cho Codex
+- Ngày giao: 19/11/2026. Nguồn: người dùng yêu cầu xác minh Node.js ≥ 20, chạy `npx -y @phaser-ae/cli setup` và mở `https://phaser.io/agent/new` sau khi thiết lập xong.
+- Kế hoạch (DEC-003): kiểm tra Node.js/npx, chạy CLI, chờ phê duyệt trên phaser.io, xác minh skill trong Codex rồi mở trang tạo game. Phạm vi là thiết lập công cụ cho người dùng và ghi checkpoint theo DEC-002. Rủi ro thực thi là CLI không truy cập được registry, không mở được trình duyệt hoặc phiên duyệt hết hạn. Không có đề xuất thay đổi đặc tả dự án.
+- Checkpoint 1: `_migration/` không tồn tại. `node --version` cho v24.18.0, `npx --version` cho 11.16.0. Chưa chạy CLI.
+- Checkpoint 2: đã chạy `npx -y @phaser-ae/cli setup`. CLI báo mở phaser.io để người dùng đăng nhập và phê duyệt, đang chờ xác thực (session 56239). Chưa xác minh cài skill.
+- Checkpoint 3: CLI xác nhận đăng nhập và cài skill cho Codex tại `C:\Users\dangt\.agents\skills\phaser-ae\SKILL.md`, kết thúc mã 0. CLI cũng báo cài bản skill cho Claude Code, OpenCode, Antigravity và GitHub Copilot.
+- Checkpoint 4 / kết quả: xác minh tệp skill Codex có 4501 byte. Lần mở URL đầu bị môi trường giới hạn quyền, lần chạy có quyền mở trình duyệt mặc định thành công (`Start-Process`, mã 0).
+- Self-Check: hoàn tất phạm vi thiết lập, không còn điểm cần xác nhận. Chỉ cập nhật nhật ký trong repo. Không chạy kiểm thử game vì đây là thiết lập công cụ ngoài repo.
+
+### T-081 — Cách dùng Phaser AE với The Unspoken
+- Ngày giao: 19/11/2026. Nguồn: người dùng hỏi cách dùng Phaser AE cho project hiện tại; skill `phaser-ae`, `Project.docx` §1.1, DEC-005, `docs/ARCHITECTURE.md` §1–2.
+- Kế hoạch (DEC-003): kiểm skill/CLI và cấu trúc repo, làm rõ khả năng nhập repo sẵn có, đưa cách phát triển game chính hoặc thử prototype. Chỉ cập nhật nhật ký. Rủi ro chính là nhầm trình tạo dự án AE với thư viện Phaser của repo hoặc chạy lệnh tạo dự án nhầm thư mục. Hướng prototype là đề xuất, chưa triển khai.
+- Checkpoint 1: đã đọc skill `phaser-ae`, xác minh `frontend/package.json` ghim `phaser` 4.2.1 và thư mục gốc hiện không có `.phaser/build.json`; `_migration/` không tồn tại.
+- Checkpoint 2 / kết quả: tài liệu chính thức `https://phaser.io/cli/guide` và `https://www.phaser.io/cli/codex` mô tả tạo thư mục AE từ game mới hoặc bản thiết kế phaser.io, không nêu lệnh nhập repo Phaser sẵn có. Với game chính, hướng dẫn sửa trực tiếp theo kiến trúc dự án. Nếu cần thử AE, đề xuất prototype riêng và sau khi được duyệt mới triển khai ý tưởng phù hợp bằng Phaser 4.2.1.
+- Self-Check: hoàn tất phần hướng dẫn. Chỉ cập nhật nhật ký, chưa chạy lệnh tạo/build AE, chưa sửa mã nguồn hoặc chạy kiểm thử game.
+
+### T-082 — Màn xem cận vật chứng trong Sổ tay
+- Ngày giao: 19/11/2026. Yêu cầu: áp dụng màn xem cận vật chứng có dữ liệu mẫu vào game hiện có. Căn cứ: Project.docx §3.2, REQ-024, DEC-005/016/017/022, CHAPTER1_MEMORY §3/8, CHAPTER1_PLAN WP-C5/WP-C9.
+- Kế hoạch (DEC-003): mở màn chi tiết từ tab Vật chứng, bố trí ảnh và thông tin riêng, tái dùng ảnh đã nạp và nội dung bản ghi đã thu. Kiểm bằng hai mục mẫu Chương 1 (một có ảnh, một chưa có ảnh). Chỉ sửa lớp trình bày và kiểm thử. Rủi ro là ảnh méo/hiện texture lỗi, chữ đè nút, thoát nhầm Sổ tay hoặc lộ vật chứng trước lúc thu; kiểm tra render Chrome/phím/chuột và state trước sau. Không đề xuất thay đổi đặc tả.
+- Checkpoint 1: đã đọc tài liệu dự án, gói Chương 1 và các điểm vào. Sổ tay hiện mở chi tiết dạng chữ; ảnh `neck-and-collar` của `EV_NeckScratches` đã được Preload nạp. Ổ khóa 204 có dữ liệu nguồn nhưng chưa có ảnh riêng. Worktree có sẵn các sửa T-079, không có `_migration/`.
+- Checkpoint 2: thêm `EvidenceDetailView` và nối `NotebookScene`. Bổ sung bước Playwright mở hai mẫu qua bàn phím/chuột, kiểm ảnh, xuất xứ và state. Đã chạy Prettier cho ba file, chưa chạy check/build hoặc Chrome.
+- Checkpoint 3: `npm run check` qua lint/format/254 unit test (39 file)/build. `python scripts/chapter1/validate.py` qua 6290 điều kiện, không broken targets hoặc unreachable nodes. Chuẩn bị kiểm Chrome.
+- Checkpoint 4: lượt Chrome thứ nhất bị cô lập localhost; đã dừng lượt đó, lượt chạy có quyền localhost (session 46828) qua 2 ca đầu, gồm lượt đi trọn Chương 1 và kiểm thêm hai vật chứng (ảnh/nhãn, phím/chuột, Esc/nút Quay lại, state). Đã xem ảnh desktop. Phát hiện gợi ý Esc chung cần đổi khi mở chi tiết. Chờ các ca Chrome còn lại trước khi sửa.
+- Checkpoint 5: Chrome lượt có quyền qua 5/6; ca cuối hết thời gian khi đợi game hủy vì Playwright tự hủy hộp xác nhận đăng xuất. Đã bổ sung bước chấp nhận hộp xác nhận trong ca đó. Đã cập nhật gợi ý phím VI/EN cho chi tiết vật chứng và thêm xác nhận trong E2E. Chuẩn bị chạy lại kiểm tra.
+- Checkpoint 6: bản cuối qua `npm run check` (254 unit test, lint, format, build) và validator 6290 điều kiện. Chrome session 40434 đã qua 2 ca đầu. Đã xem ảnh bản cuối của màn cận cảnh: ảnh giữ tỷ lệ, phần chữ nằm trong khung và gợi ý Esc/N đúng. Còn đợi bốn ca Chrome cuối.
+- Kết quả cuối: Chrome 6/6 (session 40434), hai lượt đến `CH2_ENTRY`; kiểm hai mẫu ở Phase 2, mở bằng chuột/phím, Quay lại/Esc/N và state trước sau giống nhau. Ca đóng/mở Sổ tay trong lúc quan sát Tùng và đăng xuất qua sau khi fixture xác nhận hộp thoại. Đã xem ảnh desktop `evidence-closeup.png`.
+- Self-Check: đạt trong phạm vi yêu cầu. Dùng bản ghi đã thu và ảnh có sẵn; mục thiếu ảnh hiện tên theo DEC-017. Không đổi graph, tài nguyên, schema lưu, backend/API hoặc dependency. Kiểm Chrome dùng API giả lập; không chạy MySQL thật hoặc thiết bị vật lý. Không có điểm cần người dùng xác nhận trong phạm vi đã giao.

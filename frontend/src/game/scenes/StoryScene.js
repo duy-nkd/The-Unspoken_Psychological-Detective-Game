@@ -9,11 +9,13 @@ import { ROOM_204_NECK_PHOTO } from '../data/rooms/room204'
 import { storyLine } from '../data/speakers'
 import { isStoryMapNode, storyMapHotspots } from '../data/storyMap'
 import { dialogueFontSizePx, textCharDelayMs } from '../systems/settings'
+import { tungObservationText } from '../systems/tungObservation'
 import { CharacterStage } from '../ui/CharacterStage'
 import { ChoiceMenu } from '../ui/ChoiceMenu'
 import { CredibilityBar } from '../ui/CredibilityBar'
 import { DialogueBox } from '../ui/DialogueBox'
 import { PanelButton } from '../ui/PanelButton'
+import { TungObservationView } from '../ui/TungObservationView'
 import { COLORS, DEPTH, menuTextStyle } from '../ui/theme'
 
 function closingChecklist(state, t) {
@@ -46,7 +48,7 @@ export class StoryScene extends Phaser.Scene {
     super(SCENE_KEYS.STORY)
   }
 
-  init({ mapMenu = false, entrance = null } = {}) {
+  init({ mapMenu = false, entrance = null, observation = null } = {}) {
     this.mapMenu = mapMenu
     this.entrance = entrance
     this.statement = null
@@ -56,6 +58,9 @@ export class StoryScene extends Phaser.Scene {
     this.menu = null
     this.advanceLine = null
     this.autoTimer = null
+    this.observationPending = observation === 'tung'
+    this.observationShown = false
+    this.tungObservation = null
   }
 
   create() {
@@ -112,12 +117,17 @@ export class StoryScene extends Phaser.Scene {
     this.menu = null
     this.view.forEach((object) => object.destroy())
     this.view = []
+    this.tungObservation = null
   }
 
   render() {
     this.clearView()
     const { node, state, version } = this.runner
     if (node?.type !== 'dialogue') this.characterStage.hide()
+    if (this.observationPending) {
+      this.showTungObservation()
+      return
+    }
     if (isStoryMapNode(node) && !this.mapMenu) {
       this.scene.start(SCENE_KEYS.ROOM_INVESTIGATION, {
         chapter: state.chapter,
@@ -169,6 +179,24 @@ export class StoryScene extends Phaser.Scene {
         this.runtime.t('hud.credibility', { value }),
       ),
     )
+  }
+
+  showTungObservation() {
+    const { files } = CHAPTER_DATA[1]
+    const graph = this.runtime.storyContent?.graph ?? this.cache.json.get(files.graph.key)
+    const view = new TungObservationView(this, {
+      runtime: this.runtime,
+      text: tungObservationText(graph, this.cache.json.get(files.evidence.key)),
+      playImpact: !this.observationShown,
+      onContinue: () => {
+        this.observationPending = false
+        this.render()
+      },
+    })
+    this.observationShown = true
+    this.tungObservation = view
+    this.view.push(view)
+    this.advanceLine = () => view.finish()
   }
 
   choiceRows(choices, version, sourceId) {
@@ -418,10 +446,20 @@ export class StoryScene extends Phaser.Scene {
   }
 
   handlesEscape() {
-    return Boolean(this.pickingEvidence || this.statement || this.activeSlot || this.mapMenu)
+    return Boolean(
+      this.observationPending ||
+      this.pickingEvidence ||
+      this.statement ||
+      this.activeSlot ||
+      this.mapMenu,
+    )
   }
 
   back() {
+    if (this.observationPending) {
+      this.advanceLine?.()
+      return
+    }
     if (this.pickingEvidence) this.pickingEvidence = false
     else if (this.statement) this.resetSelection()
     else if (this.activeSlot) this.activeSlot = null

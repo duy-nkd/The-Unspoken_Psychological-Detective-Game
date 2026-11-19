@@ -271,6 +271,13 @@ class ChapterPlaytest {
       if (option.onMap) await this.key('m')
       await this.row(option.text)
     }
+    if (target === 'P1_SEE_TUNG') {
+      await this.waitForScene('StoryScene')
+      await this.page.waitForFunction(
+        () => window.__THE_UNSPOKEN__.game.scene.getScene('StoryScene').tungObservation,
+      )
+      await this.key('Enter')
+    }
     await this.readLines(stopAt)
     const node = await this.node()
     if (
@@ -565,6 +572,60 @@ for (const early of [true, false]) {
       }
       expect((await game.state()).evidence_collected).toHaveLength(5)
       if (early) {
+        await test.step('Xem cận hai vật chứng mẫu trong Sổ tay', async () => {
+          const before = await game.state()
+          const preview = () =>
+            page.evaluate(() => {
+              const scene = window.__THE_UNSPOKEN__.game.scene.getScene('NotebookScene')
+              const view = scene.detailControls.find(({ name }) => name === 'evidence-detail')
+              const [frame, content, heading, source, body] = view.list
+              return {
+                title: heading.text,
+                provenance: source.text,
+                controls: scene.closeHint.text,
+                text: body.text,
+                fallback: content.text,
+                texture: content.texture?.key,
+                frame: content.frame?.name,
+                photoFits:
+                  content.getBounds().width <= frame.width &&
+                  content.getBounds().height <= frame.height,
+                bodyBottom: body.getBounds().bottom,
+              }
+            })
+
+          await game.key('n')
+          await game.waitForScene('NotebookScene')
+          await game.key('Enter')
+          expect(await preview()).toMatchObject({
+            title: evidenceNames.get('EV_LooseLock'),
+            fallback: evidenceNames.get('EV_LooseLock'),
+            text: expect.stringContaining(before.evidence_records.EV_LooseLock.text),
+          })
+          await game.key('Escape')
+          await game.notebookButton(evidenceNames.get('EV_NeckScratches'))
+          const photo = await preview()
+          expect(photo).toMatchObject({
+            title: evidenceNames.get('EV_NeckScratches'),
+            text: expect.stringContaining(before.evidence_records.EV_NeckScratches.text),
+            provenance: expect.stringContaining('Phase 2'),
+            controls: '[Esc] Quay lại · [N] Đóng Sổ tay',
+            texture: 'room204-neck-photo',
+            frame: 'neck-and-collar',
+            photoFits: true,
+          })
+          expect(photo.bodyBottom).toBeLessThan(545)
+          await game.key('`')
+          await page
+            .locator('canvas')
+            .screenshot({ path: test.info().outputPath('evidence-closeup.png') })
+          await game.key('`')
+
+          await game.notebookButton('Quay lại')
+          await game.key('n')
+          await game.waitForScene('RoomInvestigationScene')
+          expect(await game.state()).toEqual(before)
+        })
         await game.choices(
           'P2_TOWEL_DISPATCH',
           'P2_BOX_DISPATCH',

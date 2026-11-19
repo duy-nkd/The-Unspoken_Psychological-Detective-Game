@@ -14,6 +14,7 @@ import {
   timelineTitle,
 } from '../systems/timeline'
 import { ChoiceMenu } from '../ui/ChoiceMenu'
+import { EvidenceDetailView } from '../ui/EvidenceDetailView'
 import { PanelButton } from '../ui/PanelButton'
 import { TextButton } from '../ui/TextButton'
 import { COLORS, DEPTH, TEXT_STYLES, menuTextStyle } from '../ui/theme'
@@ -85,7 +86,7 @@ export class NotebookScene extends Phaser.Scene {
         onClick: () => this.showHistory(),
       }).setDepth(DEPTH.OVERLAY)
     }
-    this.add
+    this.closeHint = this.add
       .text(width - 80, height - 70, getRuntime(this).t('notebook.close'), TEXT_STYLES.small)
       .setOrigin(1, 0)
       .setDepth(DEPTH.OVERLAY)
@@ -146,13 +147,12 @@ export class NotebookScene extends Phaser.Scene {
     )
     const runtime = getRuntime(this)
     const state = runtime.session.story
-    if (state) {
+    if (state || tabId === 'evidence') {
       const group = tabId === 'evidence' ? 'evidence_records' : tabId
+      const records = state?.[group] ?? {}
       const entries = [
-        ...Object.values(state[group]),
-        ...runtime.session.notebook[tabId].filter(
-          (entry) => !Object.hasOwn(state[group], entry.id),
-        ),
+        ...Object.values(records),
+        ...runtime.session.notebook[tabId].filter((entry) => !Object.hasOwn(records, entry.id)),
       ]
       if (tabId === 'timeline') return this.showTimeline(entries)
       if (!entries.length) this.content.setText(runtime.t('notebook.empty'))
@@ -279,37 +279,50 @@ export class NotebookScene extends Phaser.Scene {
     const title = fromTimeline
       ? timelineSourceLabel(entry, (key, params) => runtime.t(key, params))
       : this.entryTitle(entry)
-    const replacement = state.statements[entry.superseded_by]
+    const replacement = state?.statements[entry.superseded_by]
     const sources = (entry.source_ids ?? [])
       .map((id) => {
-        const source = state.statements[id] ?? state.evidence_records[id] ?? state.observations[id]
+        const source =
+          state?.statements[id] ?? state?.evidence_records[id] ?? state?.observations[id]
         return source?.name ?? source?.text
       })
       .filter(Boolean)
     const observations = new Set(entry.observations ?? [])
     if (entry.id === 'PEO_TUNG') observations.add(SURVEY_NOTE_ID)
-    const related = [...observations].map((id) => state.observations[id]).filter(Boolean)
+    const related = [...observations].map((id) => state?.observations[id]).filter(Boolean)
     const statusKey = `notebook.status.${entry.status}`
     const status = runtime.t(statusKey)
-    this.content.setText(
-      [
-        title,
-        entryProvenance(entry, runtime),
-        entry.text && !title.includes(entry.text) ? entry.text : null,
-        fromTimeline ? entry.description : null,
-        entry.role,
-        entry.scope,
-        entry.corroborated_scope,
-        entry.status ? (status === statusKey ? entry.status : status) : null,
-        replacement ? runtime.t('notebook.replacement', { text: replacement.text }) : null,
-        ...sources,
-        ...related.map((record) =>
-          [record.text, entryProvenance(record, runtime)].filter(Boolean).join('\n'),
-        ),
-      ]
-        .filter(Boolean)
-        .join('\n\n'),
-    )
+    const provenance = entryProvenance(entry, runtime)
+    const description = entry.text && !title.includes(entry.text) ? entry.text : null
+    const details = [
+      entry.role,
+      entry.scope,
+      entry.corroborated_scope,
+      entry.status ? (status === statusKey ? entry.status : status) : null,
+      replacement ? runtime.t('notebook.replacement', { text: replacement.text }) : null,
+      ...sources,
+      ...related.map((record) =>
+        [record.text, entryProvenance(record, runtime)].filter(Boolean).join('\n'),
+      ),
+    ]
+    if (this.activeTab === 'evidence') {
+      this.closeHint.setText(runtime.t('notebook.evidenceControls'))
+      this.detailControls.push(
+        new EvidenceDetailView(this, {
+          id: entry.id,
+          title,
+          provenance,
+          text: [description ?? entry.description, ...details].filter(Boolean).join('\n\n'),
+          settings: runtime.settings.get(),
+        }),
+      )
+    } else {
+      this.content.setText(
+        [title, provenance, description, fromTimeline ? entry.description : null, ...details]
+          .filter(Boolean)
+          .join('\n\n'),
+      )
+    }
     this.detailButton(80, 'story.back', () =>
       fromTimeline ? this.showTimelineSources(fromTimeline) : this.selectTab(this.activeTab),
     )
@@ -369,6 +382,7 @@ export class NotebookScene extends Phaser.Scene {
 
   clearDetails() {
     this.content.setText('')
+    this.closeHint.setText(getRuntime(this).t('notebook.close'))
     this.entry = null
     this.timelineOrigin = null
     this.conversation = null
